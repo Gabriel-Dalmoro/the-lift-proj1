@@ -41,7 +41,7 @@ export default function PatioScene() {
 
           {/* Her line, in the glass above the tables */}
           <div className="absolute inset-x-0 top-[6svh] px-5 text-center sm:px-8" style={{ color: GOLD }}>
-            <p className="mx-auto max-w-[34em] text-balance text-[0.95rem] sm:text-[1.15rem] lg:text-[1.2rem]">
+            <p className="mx-auto max-w-[34em] text-balance lg:max-w-none text-[0.95rem] sm:text-[1.15rem] lg:text-[1.4vw]">
               <motion.span
                 className={`block font-display italic leading-[1.15] ${SHADOW}`}
                 style={{ opacity: serifOpacity, filter: serifBlur, y: serifY }}
@@ -49,7 +49,7 @@ export default function PatioScene() {
                 Une cuisine de caractère, vivante et généreuse,
               </motion.span>
               <motion.span
-                className={`mt-[0.35em] block font-heavy text-[2em] uppercase leading-[1.08] ${SHADOW}`}
+                className={`mt-[0.35em] block font-heavy text-[2em] uppercase leading-[1.32] ${SHADOW}`}
                 style={{ opacity: heavyOpacity, filter: heavyBlur, y: heavyY, letterSpacing: heavySpacing }}
               >
                 où le plaisir de partager devient une expérience à part entière.

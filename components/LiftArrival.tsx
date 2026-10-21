@@ -104,6 +104,30 @@ export default function LiftArrival({ isUnlocked, onOpened, children }: LiftArri
   const hintOpacity = useTransform(heroProgress, [0, 0.12], [0.85, 0]);
   const [heroFgReady, setHeroFgReady] = useState(false);
 
+  // Before the push-in: the whole hero picture fits the screen, centred. Mirrors the
+  // .hero-stage sizing in globals.css to find the scale and the offset that centre it.
+  const [heroFullView, setHeroFullView] = useState({ s: 0.6, x: 0, y: 0 });
+  useEffect(() => {
+    const fit = () => {
+      const ar = 1.3396;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const z = vw >= 1024 ? 1.44 : 1.25;
+      const w = Math.max(vw, vh * ar) * z;
+      const h = Math.max(vw / ar, vh) * z;
+      const left = Math.min(Math.max(vw - w, vw / 2 - 0.4695 * w), 0);
+      const top = Math.min(Math.max(vh - h, vh / 2 - 0.472 * h), 0);
+      const s = Math.min(vw / w, vh / h);
+      // Position of the scaled picture (scaled around the window), then the shift that centres it.
+      const scaledLeft = left + 0.4695 * w * (1 - s);
+      const scaledTop = top + 0.472 * h * (1 - s);
+      setHeroFullView({ s, x: (vw - s * w) / 2 - scaledLeft, y: (vh - s * h) / 2 - scaledTop });
+    };
+    fit();
+    window.addEventListener("resize", fit);
+    return () => window.removeEventListener("resize", fit);
+  }, []);
+
   return (
     <section ref={heroRef} aria-label="Arrivée au 8e étage" className="relative h-[240svh] w-full bg-[#0D1410] select-none">
       {/* ===================================================================
@@ -111,16 +135,22 @@ export default function LiftArrival({ isUnlocked, onOpened, children }: LiftArri
              rises from behind the counter and the back row of tables as you scroll
          =================================================================== */}
       <div className="sticky top-0 h-svh overflow-hidden">
-        {/* Stepping out: the camera pushes in as the doors open */}
+        {/* Stepping out: the whole room first, then the camera pushes in to the window as the doors open */}
         <div
-          className="absolute inset-0 transition-[transform,filter] duration-[3200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-          style={{
-            transform: isDoorsOpening ? "scale(1.12)" : "scale(1)",
-            filter: isDoorsOpening ? "brightness(1)" : "brightness(0.45)",
-          }}
+          className="absolute inset-0 transition-[filter] duration-[2400ms]"
+          style={{ filter: isDoorsOpening ? "brightness(1)" : "brightness(0.45)" }}
         >
           <motion.div className="absolute inset-0" style={{ scale: heroZoom }}>
-            <div className="hero-stage">
+            <div
+              className="hero-stage"
+              style={{
+                transform: isDoorsOpening
+                  ? "translate(0px, 0px) scale(1)"
+                  : `translate(${heroFullView.x}px, ${heroFullView.y}px) scale(${heroFullView.s})`,
+                transformOrigin: "46.95% 47.2%",
+                transition: "transform 3800ms cubic-bezier(0.65, 0, 0.3, 1)",
+              }}
+            >
               <Image
                 src="/images/hero.webp"
                 alt="La salle du Lift transformée en jungle urbaine : plantes suspendues, bougies, lumière dorée"

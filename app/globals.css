@@ -100,10 +100,11 @@ body {
 
 /* Hero picture (2000×1493) sized like object-cover, then shifted so the kitchen window
    (centre at 46.95% / 47.2% of the image) sits at the centre of the screen, never
-   leaving a gap at the edges. --z zooms in a little further. */
+   leaving a gap at the edges. --z is the final zoom on the window; before the doors open
+   the stage is scaled down around the window so the whole picture shows. */
 .hero-stage {
   --ar: 1.3396;
-  --z: 1.12;
+  --z: 1.25;
   --w: calc(max(100vw, 100svh * var(--ar)) * var(--z));
   --h: calc(max(100vw / var(--ar), 100svh) * var(--z));
   position: absolute;
@@ -114,6 +115,6 @@ body {
 }
 @media (min-width: 1024px) {
   .hero-stage {
-    --z: 1.29;
+    --z: 1.44;
   }
 }

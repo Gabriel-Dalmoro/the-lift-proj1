@@ -69,7 +69,7 @@ export default function Closing({ showSabrinaCredit = true }: ClosingProps) {
             }`}
             style={{ y: textY }}
           >
-            <p className="mx-auto max-w-6xl text-balance text-[0.9rem] text-[#2a1a10] [text-shadow:0_0_20px_rgba(255,240,210,0.6)] sm:text-[1.1rem] lg:text-[1.4rem]">
+            <p className="mx-auto max-w-6xl text-balance lg:max-w-[92vw] text-[0.9rem] text-[#2a1a10] [text-shadow:0_0_20px_rgba(255,240,210,0.6)] sm:text-[1.1rem] lg:text-[1.75vw]">
               <Serif>Parce qu’au fond, nos clients oublieront peut-être ce qu’ils ont commandé,</Serif>
               <Heavy>mais jamais la façon dont nous les avons fait se sentir.</Heavy>
             </p>

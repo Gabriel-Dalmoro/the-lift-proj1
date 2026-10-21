@@ -9,5 +9,5 @@ export function Serif({ children }: { children: React.ReactNode }) {
 }
 
 export function Heavy({ children }: { children: React.ReactNode }) {
-  return <span className="mt-[0.25em] block font-heavy text-[2em] uppercase leading-[1.08]">{children}</span>;
+  return <span className="mt-[0.3em] block font-heavy text-[2em] uppercase leading-[1.32]">{children}</span>;
 }
