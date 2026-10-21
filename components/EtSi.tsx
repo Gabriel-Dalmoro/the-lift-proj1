@@ -1,6 +1,6 @@
 import Reveal from "./Reveal";
 
-// The site's signature: each chapter opens with one of her "Et si…" questions.
+// The site’s signature: each chapter opens with one of her "Et si…" questions.
 export default function EtSi({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <Reveal y={40}>

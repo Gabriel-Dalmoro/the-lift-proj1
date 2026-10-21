@@ -8,6 +8,12 @@ import Reveal from "./Reveal";
 
 const KEYWORDS = ["Jungle urbaine", "Oasis culinaire", "Évasion", "Immersion", "Dépaysement"];
 
+const SENSES = [
+  { title: "Le visuel", text: "Une végétation spectaculaire dès l’entrée." },
+  { title: "Le sonore", text: "Une ambiance musicale et des sons évoquant subtilement la nature." },
+  { title: "L’olfactif", text: "Une signature parfumée végétale, discrète et reconnaissable, diffusée dans le sas." },
+];
+
 export default function Ambiance() {
   const layered = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: layered, offset: ["start end", "end start"] });
@@ -17,24 +23,34 @@ export default function Ambiance() {
   const hangingY = useTransform(scrollYProgress, [0, 1], ["-10%", "14%"]);
 
   return (
-    <section data-chapter="L'ambiance" className="relative bg-jungle-deep text-cream">
+    <section data-chapter="L’ambiance" className="relative bg-jungle-deep text-cream">
       {/* Beat 1 */}
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-24 sm:py-36 md:grid-cols-2 md:gap-16">
         <Reveal>
           <p className="font-serif text-2xl font-light leading-snug text-cream/95 sm:text-3xl">
-            Plus qu'un restaurant, je souhaite imaginer un lieu de vie et d'émotions, où l'on vient autant pour savourer
-            que pour ressentir, partager et prolonger l'instant.
+            Dès l’ouverture de l’ascenseur, tout commence&nbsp;: une lumière, une fragrance végétale, une vibration
+            musicale… Les sens s’éveillent, les repères s’effacent et l’on pénètre dans un autre monde.
           </p>
         </Reveal>
         <Reveal delay={0.15}>
           <Photo
             src="/images/ambiance-palms.webp"
-            alt="Palmiers et végétation abondante sous une verrière"
+            alt="L’arrivée au 8e étage, enveloppée de végétation"
             className="aspect-[4/5] w-full rounded-sm"
             sizes="(min-width: 768px) 50vw, 100vw"
             parallax={10}
           />
         </Reveal>
+      </div>
+
+      {/* The three senses she wants to work on at the lift arrival */}
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 pb-24 sm:pb-32 md:grid-cols-3 md:gap-12">
+        {SENSES.map((sense, i) => (
+          <Reveal key={sense.title} delay={i * 0.12} className="border-t border-brass/30 pt-6">
+            <h3 className="font-serif text-2xl font-light italic text-brass-light">{sense.title}</h3>
+            <p className="mt-3 text-base leading-relaxed text-cream/80">{sense.text}</p>
+          </Reveal>
+        ))}
       </div>
 
       {/* Beat 2: layered room with leaves in front */}
@@ -91,8 +107,8 @@ export default function Ambiance() {
         <div className="relative z-10 flex h-full items-center justify-center px-6">
           <Reveal className="max-w-2xl text-center">
             <p className="font-serif text-2xl font-light leading-snug sm:text-[2.1rem]">
-              Dès l'ouverture de l'ascenseur, tout commence&nbsp;: une lumière, une fragrance végétale, une vibration
-              musicale… Les sens s'éveillent, les repères s'effacent et l'on pénètre dans un autre monde.
+              Plus qu’un restaurant, je souhaite imaginer un lieu de vie et d’émotions, où l’on vient autant pour
+              savourer que pour ressentir, partager et prolonger l’instant.
             </p>
           </Reveal>
         </div>

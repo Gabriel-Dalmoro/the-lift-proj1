@@ -17,7 +17,7 @@ const ROWS = [
   [1, 2],
 ];
 
-/** Modelled on The Lift's real button: black square, cream centre, green LED ring split at the corners. */
+/** Modelled on The Lift’s real button: black square, cream centre, green LED ring split at the corners. */
 function LiftButton({
   n,
   lit,

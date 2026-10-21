@@ -75,8 +75,8 @@ export default function Closing({ showSabrinaCredit = false }: ClosingProps) {
           <div className="mx-auto mb-10 h-12 w-[1px] bg-gradient-to-b from-transparent via-[#B89758] to-[#B89758]" />
 
           <blockquote className="font-serif text-3xl leading-[1.28] font-light tracking-[-0.01em] text-[#1C1917] sm:text-5xl md:text-[3.35rem]">
-            «{" "}Parce qu’au fond, nos clients oublieront peut-être ce qu’ils ont commandé, mais jamais la façon
-            dont nous les avons fait se sentir.{" "}»
+            Parce qu’au fond, nos clients oublieront peut-être ce qu’ils ont commandé, mais jamais la façon
+            dont nous les avons fait se sentir.
           </blockquote>
 
           <div className="mx-auto mt-10 h-12 w-[1px] bg-gradient-to-b from-[#B89758] to-transparent" />

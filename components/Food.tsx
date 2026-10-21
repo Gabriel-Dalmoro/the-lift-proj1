@@ -2,6 +2,16 @@ import EtSi from "./EtSi";
 import Photo from "./Photo";
 import Reveal from "./Reveal";
 
+const DISHES = [
+  { name: "Les Gougères des Sommets", text: "Gougères cacio e pepe, poivre noir, pecorino" },
+  {
+    name: "Tartare à l’italienne",
+    text: "Bœuf, parmigiano, câpres, truffe blanche d’Alba en saison, noisette du Piémont",
+    note: "servi avec une focaccia préparée à table, à partager pour 2 ou 3 personnes",
+  },
+  { name: "Croque Monsieur du Lift", text: "Mortadelle, taleggio, pistache" },
+];
+
 export default function Food() {
   return (
     <section data-chapter="La carte" className="relative text-cream">
@@ -11,19 +21,28 @@ export default function Food() {
       <div className="bg-[#3b1d10]">
         <div className="flex min-h-[90svh] items-center justify-center px-5 pb-24">
           <EtSi className="text-[#f8e6cc]">
-            Et si nous réinventions l'art de partager les grands classiques de la cuisine française&nbsp;?
+            Et si nous réinventions l’art de partager les grands classiques de la cuisine française&nbsp;?
           </EtSi>
         </div>
 
         <Photo
           src="/images/food-hero.webp"
-          alt="Des amis trinquent autour d'une table garnie, à la lueur des bougies"
+          alt="Des amis trinquent autour d’une table garnie, à la lueur des bougies"
           className="h-[80svh] w-full"
           parallax={10}
           overlay="bg-gradient-to-b from-[#3b1d10] via-transparent to-[#3b1d10]"
         />
 
-        <div className="mx-auto max-w-4xl px-6 py-28 text-center sm:py-40">
+        <div className="mx-auto max-w-2xl px-6 pt-24 text-center sm:pt-32">
+          <Reveal>
+            <p className="font-serif text-xl font-light leading-relaxed text-[#f3dcbc] sm:text-2xl">
+              J’imagine une carte courte et audacieuse, où les incontournables de notre patrimoine culinaire se
+              réinventent en petites assiettes généreuses, relevées d’un accent italien.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="mx-auto max-w-4xl px-6 py-24 text-center sm:py-32">
           <Reveal>
             <p className="mb-6 text-[11px] uppercase tracking-[0.35em] text-amber">La promesse culinaire</p>
           </Reveal>
@@ -32,7 +51,7 @@ export default function Food() {
               className="text-balance font-serif text-[2rem] font-light italic leading-[1.15] text-[#f8e6cc] sm:text-6xl"
               style={{ fontVariationSettings: '"opsz" 144, "SOFT" 80' }}
             >
-              Une cuisine française à partager, relevée d'un accent italien.
+              Une cuisine française à partager, relevée d’un accent italien.
             </p>
           </Reveal>
         </div>
@@ -42,7 +61,7 @@ export default function Food() {
           <Reveal className="col-span-2">
             <Photo
               src="/images/food-table.webp"
-              alt="Vue du dessus d'une grande table couverte d'assiettes à partager"
+              alt="Vue du dessus d’une grande table couverte d’assiettes à partager"
               className="aspect-[16/10] w-full rounded-sm"
               sizes="(min-width: 1152px) 1152px, 100vw"
             />
@@ -59,7 +78,7 @@ export default function Food() {
           <Reveal delay={0.15}>
             <Photo
               src="/images/food-cheers.webp"
-              alt="Un groupe d'amis trinque autour de plats partagés"
+              alt="Un groupe d’amis trinque autour de plats partagés"
               className="aspect-[4/5] w-full rounded-sm"
               sizes="50vw"
               position="35% center"
@@ -67,16 +86,67 @@ export default function Food() {
           </Reveal>
         </div>
 
-        <div className="mx-auto max-w-2xl px-6 pb-36 pt-24 text-center sm:pb-48">
+        <div className="mx-auto max-w-2xl px-6 pb-24 pt-24 text-center">
           <Reveal>
             <p className="font-serif text-xl font-light leading-relaxed text-[#f3dcbc] sm:text-2xl">
               Dix propositions, dont quatre créations signatures fortes, imaginées autour de produits nobles,
-              d'associations surprenantes et d'une véritable valeur ajoutée gastronomique.
+              d’associations surprenantes et d’une véritable valeur ajoutée gastronomique.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-8 font-serif text-2xl italic text-amber sm:text-3xl">
-              Des plats que l'on ne vient déguster qu'au Lift.
+              Des plats que l’on ne vient déguster qu’au Lift.
+            </p>
+          </Reveal>
+        </div>
+
+        {/* Example dishes, explicitly not a final menu */}
+        <div className="mx-auto max-w-6xl px-6 pb-28 sm:pb-36">
+          <Reveal>
+            <p className="mb-10 text-center text-[11px] uppercase tracking-[0.35em] text-amber">
+              Pistes d’incarnation du concept
+            </p>
+          </Reveal>
+          <div className="grid gap-px overflow-hidden rounded-sm bg-amber/25 md:grid-cols-3">
+            {DISHES.map((dish, i) => (
+              <Reveal key={dish.name} delay={i * 0.12} className="bg-[#3b1d10] px-7 py-9 text-center">
+                <h3 className="font-serif text-2xl font-light text-[#f8e6cc] sm:text-[1.7rem]">{dish.name}</h3>
+                <p className="mx-auto mt-4 max-w-xs text-sm leading-relaxed text-[#f3dcbc]/80">{dish.text}</p>
+                {dish.note && <p className="mx-auto mt-3 max-w-xs text-sm italic leading-relaxed text-amber/90">{dish.note}</p>}
+              </Reveal>
+            ))}
+          </div>
+          <Reveal>
+            <p className="mt-6 text-center text-sm italic text-[#f3dcbc]/60">
+              Ces propositions sont des pistes d’incarnation du concept, pas encore une carte figée.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="mx-auto max-w-2xl space-y-10 px-6 pb-24 text-center">
+          <Reveal>
+            <p className="font-serif text-xl font-light leading-relaxed text-[#f3dcbc] sm:text-2xl">
+              Le spectacle se prolonge jusqu’à la table&nbsp;: certaines assiettes sont dressées, découpées ou finalisées
+              devant les convives, transformant le service en un moment de partage et d’émotion.
+            </p>
+          </Reveal>
+          <Reveal>
+            <p className="font-serif text-xl font-light leading-relaxed text-[#f3dcbc] sm:text-2xl">
+              Au cœur de cette identité, notre Chef. Je souhaite lui donner un visage, une signature et une place centrale
+              dans l’expérience, car une cuisine qui marque les esprits est avant tout une cuisine qui raconte la
+              personnalité et le savoir-faire de celui qui la crée.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="mx-auto max-w-3xl px-6 pb-36 pt-8 text-center sm:pb-48">
+          <Reveal>
+            <p
+              className="text-balance font-serif text-3xl font-light italic leading-snug text-amber sm:text-5xl"
+              style={{ fontVariationSettings: '"opsz" 144, "SOFT" 80' }}
+            >
+              Une cuisine de caractère, vivante et généreuse, où le plaisir de partager devient une expérience à part
+              entière.
             </p>
           </Reveal>
         </div>

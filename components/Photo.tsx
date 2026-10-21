@@ -40,7 +40,7 @@ export default function Photo({
       {overlay && <div className={`absolute inset-0 ${overlay}`} />}
       {caption && (
         <span className={`absolute bottom-2 right-3 z-10 font-sans text-[10px] italic tracking-wide ${captionClass}`}>
-          Visuel d'illustration
+          Visuel d’illustration
         </span>
       )}
     </div>

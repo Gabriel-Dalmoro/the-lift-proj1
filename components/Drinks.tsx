@@ -8,12 +8,18 @@ const small = "font-sans text-sm uppercase tracking-[0.3em] text-cream/90 sm:tex
 
 function Statement({
   children,
+  title,
+  body,
   src,
   alt,
   flip = false,
   position,
 }: {
   children: React.ReactNode;
+  /** Her section title, e.g. "Une cave sans frontières" */
+  title: string;
+  /** Her short presentation text */
+  body: React.ReactNode;
   src: string;
   alt: string;
   flip?: boolean;
@@ -21,7 +27,15 @@ function Statement({
 }) {
   return (
     <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 sm:py-28 md:grid-cols-2 md:gap-14">
-      <Reveal className={flip ? "md:order-2" : ""}>{children}</Reveal>
+      <div className={flip ? "md:order-2" : ""}>
+        <Reveal>{children}</Reveal>
+        <Reveal delay={0.1}>
+          <h3 className="mt-10 font-serif text-2xl font-light italic text-cream sm:text-3xl">{title}</h3>
+        </Reveal>
+        <Reveal delay={0.2} className="mt-5 space-y-4 text-base leading-relaxed text-cream/75 sm:text-lg">
+          {body}
+        </Reveal>
+      </div>
       <Reveal delay={0.15} className={flip ? "md:order-1" : ""}>
         <Photo src={src} alt={alt} className="aspect-[4/5] w-full rounded-sm" sizes="(min-width: 768px) 50vw, 100vw" position={position} />
       </Reveal>
@@ -39,7 +53,8 @@ export default function Drinks() {
         <div className="mx-auto max-w-4xl px-5 pb-12 pt-16 text-center">
           <Reveal>
             <h2 className="font-serif text-3xl font-light uppercase tracking-[0.06em] text-cream sm:text-5xl">
-              Vins &amp; cocktails&nbsp;: <span className="block text-brass-light sm:inline">l'art de la découverte</span>
+              Vins &amp; cocktails <span className="hidden sm:inline">—</span>{" "}
+              <span className="block text-brass-light sm:inline">l’art de la découverte</span>
             </h2>
           </Reveal>
           <Reveal delay={0.15}>
@@ -49,7 +64,27 @@ export default function Drinks() {
           </Reveal>
         </div>
 
-        <Statement src="/images/drinks-wine.webp" alt="Un vin rouge versé dans un verre, lumière chaude">
+        <Statement
+          src="/images/drinks-wine.webp"
+          alt="Un vin rouge versé dans un verre, lumière chaude"
+          title="Une cave sans frontières"
+          body={
+            <>
+              <p className="font-serif text-xl italic text-brass-light/90">
+                Et si nous oubliions les cartes des vins traditionnelles pour redonner toute sa place à la rencontre et à
+                la découverte&nbsp;?
+              </p>
+              <p>
+                J’imagine une sélection de 100 vins à moins de 90&nbsp;€, venus de France et des quatre coins du monde. Une
+                cave vivante, jamais figée, où chaque visite devient une nouvelle invitation au voyage.
+              </p>
+              <p>
+                Nos sommeliers deviennent les guides de cette expérience&nbsp;: quelques mots sur vos envies, une
+                fourchette de prix, et laissez-vous surprendre.
+              </p>
+            </>
+          }
+        >
           <p className="flex flex-col gap-3" aria-label="100 vins à moins de 90 €">
             <span className={`${big} text-[9rem] sm:text-[12rem]`}>
               <CountUp to={100} />
@@ -59,7 +94,28 @@ export default function Drinks() {
           </p>
         </Statement>
 
-        <Statement src="/images/drinks-cocktail.webp" alt="Un cocktail ambré garni d'orange et d'une fleur" flip>
+        <Statement
+          src="/images/drinks-cocktail.webp"
+          alt="Un cocktail ambré garni d’orange et d’une fleur"
+          flip
+          title="L’esprit d’une collaboration locale"
+          body={
+            <>
+              <p>
+                Associer notre créativité à celle d’un distillateur de la région pour imaginer quatre cocktails que l’on
+                ne retrouvera qu’au Lift.
+              </p>
+              <p>
+                Une rencontre entre deux savoir-faire, des créations singulières et un partenariat qui se prolonge
+                au-delà du verre, à travers des événements, des découvertes et une communication commune.
+              </p>
+              {/* Space kept for the partner’s name and logo, as the brief asks */}
+              <div className="mt-6 flex h-20 items-center justify-center rounded-sm border border-dashed border-brass/40 text-[11px] uppercase tracking-[0.3em] text-brass/70">
+                Distillateur partenaire
+              </div>
+            </>
+          }
+        >
           <p className="flex flex-col gap-3" aria-label="4 créations exclusives × 1 distillateur local">
             <span className="flex items-end gap-4">
               <span className={`${big} text-[8rem] sm:text-[10rem]`}>4</span>
@@ -73,7 +129,28 @@ export default function Drinks() {
           </p>
         </Statement>
 
-        <Statement src="/images/drinks-bartender.webp" alt="Un barman prépare un cocktail devant le comptoir" position="35% center">
+        <div className="flex min-h-[80svh] items-center justify-center px-5 py-24">
+          <EtSi className="text-cream">Et si le plus beau cocktail était celui qui n’existe pas encore&nbsp;?</EtSi>
+        </div>
+
+        <Statement
+          src="/images/drinks-bartender.webp"
+          alt="Un barman prépare un cocktail devant le comptoir"
+          position="35% center"
+          title="Une expérience unique"
+          body={
+            <>
+              <p>
+                Pas de recette imposée. Notre barman prend le temps de découvrir vos goûts, vos envies, vos souvenirs de
+                saveurs, puis imagine devant vous un cocktail créé spécialement pour cet instant.
+              </p>
+              <p>
+                Une expérience spontanée, humaine et personnalisée, que nous expérimentons déjà avec un immense succès
+                auprès de nos clients.
+              </p>
+            </>
+          }
+        >
           <p
             className="font-serif text-[3.4rem] font-light uppercase leading-[0.95] text-brass-light sm:text-7xl"
             style={{ fontVariationSettings: '"opsz" 144' }}
@@ -86,10 +163,6 @@ export default function Drinks() {
           </p>
         </Statement>
 
-        <div className="flex min-h-[80svh] items-center justify-center px-5 py-24">
-          <EtSi className="text-cream">Et si le plus beau cocktail était celui qui n'existe pas encore&nbsp;?</EtSi>
-        </div>
-
         <Photo
           src="/images/drinks-garnish.webp"
           alt="Un barman pose la touche finale sur un cocktail"
@@ -101,8 +174,8 @@ export default function Drinks() {
         <div className="mx-auto max-w-2xl px-6 pb-32 pt-20 text-center sm:pb-44">
           <Reveal>
             <p className="font-serif text-xl font-light leading-relaxed text-cream/85 sm:text-2xl">
-              Notre ambition&nbsp;: faire du Lift un lieu où l'on ne revient pas pour retrouver toujours la même chose,
-              mais pour avoir le plaisir d'être surpris à chaque fois.
+              Notre ambition&nbsp;: faire du Lift un lieu où l’on ne revient pas pour retrouver toujours la même chose,
+              mais pour avoir le plaisir d’être surpris à chaque fois.
             </p>
           </Reveal>
         </div>

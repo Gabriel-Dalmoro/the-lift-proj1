@@ -38,7 +38,7 @@ export default function LiftArrival({ isUnlocked, onOpened, children }: LiftArri
   const reduce = useReducedMotion();
   const controlled = isUnlocked !== undefined;
 
-  // Uncontrolled intro: the logo's "i" rides up its cable while the page loads, then the call panel.
+  // Uncontrolled intro: the logo’s "i" rides up its cable while the page loads, then the call panel.
   const [intro, setIntro] = useState<"loading" | "panel" | "done">(controlled ? "done" : "loading");
   const [risen, setRisen] = useState(false);
   const [loaded, setLoaded] = useState(false);
