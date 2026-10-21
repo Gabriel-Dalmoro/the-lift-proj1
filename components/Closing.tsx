@@ -12,7 +12,7 @@ export interface ClosingProps {
   showSabrinaCredit?: boolean;
 }
 
-const FIT = "object-cover object-[center_41%]";
+const FIT = "object-cover object-[center_top]";
 // Scroll progress through the pinned ending at which the lift appears and its doors close.
 const LIFT_AT = 0.6;
 
@@ -21,7 +21,7 @@ const LIFT_AT = 0.6;
 export default function Closing({ showSabrinaCredit = true }: ClosingProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  const textY = useTransform(scrollYProgress, [0.03, 0.38], ["70svh", "0svh"]);
+  const textY = useTransform(scrollYProgress, [0.03, 0.38], ["60svh", "0svh"]);
   const zoom = useTransform(scrollYProgress, [0, LIFT_AT], [1.1, 1]);
 
   const [bgReady, setBgReady] = useState(false);
@@ -54,7 +54,7 @@ export default function Closing({ showSabrinaCredit = true }: ClosingProps) {
         <motion.div className="absolute inset-0" style={{ scale: zoom }}>
           <Image
             src="/images/closing-lyon.webp"
-            alt="Lyon, ses tours et le Rhône au petit matin"
+            alt="Lyon au soleil levant : les toits de la Presqu’île et les tours de la Part-Dieu"
             fill
             sizes="100vw"
             loading="eager"
@@ -62,14 +62,14 @@ export default function Closing({ showSabrinaCredit = true }: ClosingProps) {
             onLoad={() => setBgReady(true)}
           />
 
-          {/* Her final sentence, between the sky and the city */}
+          {/* Her final sentence: rises from behind the city and settles in the sky above the towers */}
           <motion.div
-            className={`absolute inset-x-0 top-[13svh] px-6 text-center transition-opacity duration-500 lg:top-[19svh] ${
+            className={`absolute inset-x-0 top-[4.5svh] px-6 text-center transition-opacity duration-500 lg:top-[4svh] ${
               bgReady && fgReady ? "opacity-100" : "opacity-0"
             }`}
             style={{ y: textY }}
           >
-            <p className="mx-auto max-w-[17ch] text-balance text-[2rem] text-[#1C1917] sm:max-w-[19ch] sm:text-5xl lg:text-[3.4rem]">
+            <p className="mx-auto max-w-[16em] text-balance text-[1.3rem] text-[#2a1a10] [text-shadow:0_0_20px_rgba(255,240,210,0.6)] sm:text-[1.7rem] lg:text-[2rem]">
               <Serif>Parce qu’au fond, nos clients oublieront peut-être ce qu’ils ont commandé,</Serif>
               <Heavy>mais jamais la façon dont nous les avons fait se sentir.</Heavy>
             </p>
@@ -87,7 +87,6 @@ export default function Closing({ showSabrinaCredit = true }: ClosingProps) {
               onLoad={() => setFgReady(true)}
             />
           </div>
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,var(--color-cream),transparent_14%)]" />
         </motion.div>
 
         {/* The lift appears over the same view, then its doors close */}

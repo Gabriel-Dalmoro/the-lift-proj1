@@ -2,7 +2,6 @@
 | File | Pexels photo ID |
 | --- | --- |
 | ambiance-night.webp | [4577179](https://www.pexels.com/photo/4577179/) |
-| ambiance-palms.webp | [9989484](https://www.pexels.com/photo/9989484/) |
 | hosp-madeleines.webp | [5194493](https://www.pexels.com/photo/5194493/) |
 | hosp-welcome.webp | [4350094](https://www.pexels.com/photo/4350094/) |
 | terrace-day.webp, terrace-sunset.webp | AI-generated from real photos of The Lift (Gabriel) |
@@ -12,3 +11,5 @@
 | food-golden.webp, food-spread.webp, drinks-tray.webp, closing-lyon.webp | Supplied by Gabriel |
 | drinks-wine.webp | [3756623](https://www.pexels.com/photo/3756623/) |
 | hero.webp, patio-evening.webp | AI-generated from real photos of The Lift (Gabriel) |
+| ambiance-inspiration.webp | Inspiration image supplied by Gabriel (Twentysix Budapest), captioned "Image d’inspiration" |
+| drinks-garnish.webp | [34167448](https://www.pexels.com/photo/34167448/) |

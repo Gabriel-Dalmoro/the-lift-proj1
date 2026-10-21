@@ -51,30 +51,78 @@ const STEPS: { n: string; title: string; text: string[] }[] = [
   },
 ];
 
-/** A phone showing a message from The Lift. The lines stay abstract: no invented wording. */
+/** A realistic phone showing the next-day message from The Lift. The message text is
+ *  blurred on purpose: it reads as a real conversation without inventing her wording. */
 function MessagePhone() {
+  const blurred = "select-none [filter:blur(3px)]";
   return (
-    <div className="mt-8 w-[220px] rounded-[2.2rem] bg-[#1d1915] p-2.5 shadow-[0_24px_50px_rgba(42,30,22,0.3)]">
-      <div className="overflow-hidden rounded-[1.8rem] bg-[#f7f1e8]">
-        <div className="flex flex-col items-center gap-1.5 border-b border-ink/10 bg-white/60 pb-3 pt-6">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-jungle">
-            <Logo className="w-6 text-cream" cable={0} />
-          </span>
-          <span className="text-[10px] font-medium text-ink/70">The Lift</span>
-        </div>
-        <div className="space-y-3 px-3.5 pb-8 pt-5">
-          <span className="block text-center text-[9px] uppercase tracking-[0.2em] text-ink/40">J+1</span>
-          <div className="w-[85%] space-y-1.5 rounded-2xl rounded-bl-md bg-white px-3 py-3 shadow-sm">
-            <span className="block h-1.5 w-full rounded-full bg-ink/15" />
-            <span className="block h-1.5 w-[92%] rounded-full bg-ink/15" />
-            <span className="block h-1.5 w-[70%] rounded-full bg-ink/15" />
-          </div>
-          <div className="w-[60%] space-y-1.5 rounded-2xl rounded-bl-md bg-white px-3 py-3 shadow-sm">
-            <span className="block h-1.5 w-full rounded-full bg-ink/15" />
-            <span className="block h-1.5 w-[55%] rounded-full bg-ink/15" />
-          </div>
-          <div className="ml-auto w-[45%] rounded-2xl rounded-br-md bg-jungle px-3 py-3">
-            <span className="block h-1.5 w-full rounded-full bg-cream/40" />
+    <div className="relative mt-10 w-[248px]" aria-label="Un smartphone affichant un message personnalisé du Lift">
+      {/* Side buttons */}
+      <span className="absolute -left-[3px] top-[96px] h-[26px] w-[3px] rounded-l bg-[#3a3a3c]" />
+      <span className="absolute -left-[3px] top-[140px] h-[46px] w-[3px] rounded-l bg-[#3a3a3c]" />
+      <span className="absolute -left-[3px] top-[196px] h-[46px] w-[3px] rounded-l bg-[#3a3a3c]" />
+      <span className="absolute -right-[3px] top-[156px] h-[74px] w-[3px] rounded-r bg-[#3a3a3c]" />
+
+      {/* Titanium frame, black bezel, screen */}
+      <div className="rounded-[46px] bg-gradient-to-br from-[#6e6e73] via-[#2c2c2e] to-[#58585c] p-[3px] shadow-[0_34px_60px_-12px_rgba(42,30,22,0.45),0_12px_24px_-8px_rgba(42,30,22,0.3)]">
+        <div className="rounded-[43px] bg-black p-[9px]">
+          <div className="relative flex h-[500px] flex-col overflow-hidden rounded-[35px] bg-white font-sans text-black">
+            {/* Status bar and Dynamic Island */}
+            <div className="flex h-11 shrink-0 items-center justify-between px-6 pt-1 text-[13px] font-semibold tracking-tight">
+              <span>10:12</span>
+              <span className="flex items-center gap-1.5">
+                <svg viewBox="0 0 18 12" className="h-[10px] w-[16px]" aria-hidden>
+                  <rect x="0" y="8" width="3" height="4" rx="0.8" fill="currentColor" />
+                  <rect x="5" y="5.5" width="3" height="6.5" rx="0.8" fill="currentColor" />
+                  <rect x="10" y="3" width="3" height="9" rx="0.8" fill="currentColor" />
+                  <rect x="15" y="0" width="3" height="12" rx="0.8" fill="currentColor" />
+                </svg>
+                <svg viewBox="0 0 16 12" className="h-[10px] w-[14px]" aria-hidden>
+                  <path d="M8 11.5 5.6 9a3.4 3.4 0 0 1 4.8 0L8 11.5Z" fill="currentColor" />
+                  <path d="M3.4 6.8a6.5 6.5 0 0 1 9.2 0l-1.4 1.4a4.5 4.5 0 0 0-6.4 0L3.4 6.8Z" fill="currentColor" />
+                  <path d="M1.2 4.6a9.6 9.6 0 0 1 13.6 0l-1.4 1.4a7.6 7.6 0 0 0-10.8 0L1.2 4.6Z" fill="currentColor" />
+                </svg>
+                <svg viewBox="0 0 27 13" className="h-[11px] w-[24px]" aria-hidden>
+                  <rect x="0.5" y="0.5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" opacity="0.4" />
+                  <rect x="2" y="2" width="17" height="9" rx="2" fill="currentColor" />
+                  <path d="M25 4.5v4a2 2 0 0 0 0-4Z" fill="currentColor" opacity="0.45" />
+                </svg>
+              </span>
+            </div>
+            <span className="absolute left-1/2 top-[9px] h-[26px] w-[86px] -translate-x-1/2 rounded-full bg-black" />
+
+            {/* Conversation header */}
+            <div className="relative flex shrink-0 flex-col items-center gap-1 border-b border-black/[0.08] bg-[#f9f9f9] pb-2 pt-1">
+              <span className="absolute left-3 top-3 text-[26px] leading-none text-[#0a84ff]">‹</span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-b from-[#1f4a35] to-jungle shadow-inner">
+                <Logo className="w-7 text-cream" cable={0} />
+              </span>
+              <span className="text-[11px] text-black/80">The Lift ›</span>
+            </div>
+
+            {/* Messages */}
+            <div className="flex-1 space-y-2 bg-white px-3 pt-4">
+              <p className="pb-1 text-center text-[10px] font-medium text-black/40">Aujourd’hui 10:12</p>
+              <div className="max-w-[82%] rounded-[18px] rounded-bl-[6px] bg-[#e9e9eb] px-3 py-2 text-[13px] leading-snug">
+                <span className={blurred}>Bonjour Claire, merci encore pour votre belle soirée d’anniversaire au Lift hier.</span>
+              </div>
+              <div className="max-w-[82%] rounded-[18px] rounded-bl-[6px] bg-[#e9e9eb] px-3 py-2 text-[13px] leading-snug">
+                <span className={blurred}>Nous espérons que le gâteau surprise vous a plu. Votre avis nous ferait plaisir.</span>
+              </div>
+              <div className="ml-auto max-w-[70%] rounded-[18px] rounded-br-[6px] bg-[#0a84ff] px-3 py-2 text-[13px] leading-snug text-white">
+                <span className={blurred}>Merci à toute l’équipe, quelle soirée !</span>
+              </div>
+              <p className="pr-1 text-right text-[10px] text-black/40">Distribué</p>
+            </div>
+
+            {/* Input bar and home indicator */}
+            <div className="shrink-0 px-3 pb-6 pt-2">
+              <div className="flex items-center gap-2">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#e9e9eb] text-[16px] leading-none text-black/50">+</span>
+                <span className="flex-1 rounded-full border border-black/15 px-3 py-1 text-[12px] text-black/35">iMessage</span>
+              </div>
+            </div>
+            <span className="absolute bottom-2 left-1/2 h-[4px] w-[100px] -translate-x-1/2 rounded-full bg-black" />
           </div>
         </div>
       </div>

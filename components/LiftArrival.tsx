@@ -18,8 +18,6 @@ export interface LiftArrivalProps {
   children?: React.ReactNode;
 }
 
-const HERO_FIT = "object-cover object-[center_55%]";
-
 // Ride from the ground floor to the 8th: slow start, cruise, slow into the floor.
 const SCHEDULE = [
   { f: 0, delay: 0 },
@@ -100,8 +98,9 @@ export default function LiftArrival({ isUnlocked, onOpened, children }: LiftArri
   // Hero scroll: her question rises from behind the counter, the room drifts closer.
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end end"] });
-  const heroTextY = useTransform(heroProgress, [0.02, 0.6], ["46svh", "0svh"]);
-  const heroZoom = useTransform(heroProgress, [0, 1], [1, 1.06]);
+  // Centre of the text, in % of the window's height: from well below the counter to the middle.
+  const heroTextTop = useTransform(heroProgress, [0.02, 0.6], ["180%", "58%"]);
+  const heroZoom = useTransform(heroProgress, [0, 1], [1, 1.03]);
   const hintOpacity = useTransform(heroProgress, [0, 0.12], [0.85, 0]);
   const [heroFgReady, setHeroFgReady] = useState(false);
 
@@ -116,54 +115,54 @@ export default function LiftArrival({ isUnlocked, onOpened, children }: LiftArri
         <div
           className="absolute inset-0 transition-[transform,filter] duration-[3200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
           style={{
-            transform: isDoorsOpening ? "scale(1.14)" : "scale(1)",
+            transform: isDoorsOpening ? "scale(1.12)" : "scale(1)",
             filter: isDoorsOpening ? "brightness(1)" : "brightness(0.45)",
           }}
         >
           <motion.div className="absolute inset-0" style={{ scale: heroZoom }}>
-            <Image
-              src="/images/hero.webp"
-              alt="La salle du Lift transformée en jungle urbaine : plantes suspendues, bougies, lumière dorée"
-              fill
-              priority
-              sizes="100vw"
-              className={HERO_FIT}
-            />
-
-            {children ? (
-              <div className="absolute inset-x-0 top-[20svh]">{children}</div>
-            ) : (
-              <motion.div
-                className={`absolute inset-x-0 top-[17svh] px-6 text-center transition-opacity duration-700 sm:top-[19svh] ${
-                  heroFgReady && isDoorsOpening ? "opacity-100" : "opacity-0"
-                }`}
-                style={{ y: heroTextY }}
-              >
-                <div className="mb-5 inline-flex items-center gap-3">
-                  <span className="h-px w-8 bg-[#C8A464]/70" />
-                  <span className="font-sans text-[10px] tracking-[0.35em] uppercase text-[#E5C992]">8ᵉ étage · L’ambiance</span>
-                  <span className="h-px w-8 bg-[#C8A464]/70" />
-                </div>
-                <h1 className="mx-auto max-w-[13ch] text-balance text-[2.15rem] text-[#F7F3EB] drop-shadow-[0_2px_22px_rgba(0,0,0,0.7)] sm:max-w-[15ch] sm:text-5xl lg:text-[3.3rem]">
-                  <Serif>Et si, au cœur de la ville, nous pouvions nous offrir le luxe de</Serif>
-                  <Heavy>nous évader sans partir&nbsp;?</Heavy>
-                </h1>
-              </motion.div>
-            )}
-
-            {/* Counter, back tables and the plants in front: drawn over the text */}
-            <div className="pointer-events-none absolute inset-0">
+            <div className="hero-stage">
               <Image
-                src="/images/hero-fg.webp"
-                alt=""
+                src="/images/hero.webp"
+                alt="La salle du Lift transformée en jungle urbaine : plantes suspendues, bougies, lumière dorée"
                 fill
-                sizes="100vw"
-                loading="eager"
-                className={HERO_FIT}
-                onLoad={() => setHeroFgReady(true)}
+                priority
+                sizes="130vw"
+                className="object-cover"
               />
+
+              {/* The kitchen window: her question rises from behind the counter and settles inside it */}
+              <div className="absolute left-[35.4%] top-[38.5%] h-[17.4%] w-[23.1%] [container-type:inline-size]">
+                {children ? (
+                  children
+                ) : (
+                  <motion.div
+                    className={`absolute inset-x-0 -translate-y-1/2 px-[5%] text-center transition-opacity duration-700 ${
+                      heroFgReady && isDoorsOpening ? "opacity-100" : "opacity-0"
+                    }`}
+                    style={{ top: heroTextTop }}
+                  >
+                    <h1 className="text-balance text-[6.6cqw] text-[#1c1410] [text-shadow:0_0_18px_rgba(255,248,236,0.85)]">
+                      <Serif>Et si, au cœur de la ville, nous pouvions nous offrir le luxe de</Serif>
+                      <Heavy>nous évader sans partir&nbsp;?</Heavy>
+                    </h1>
+                  </motion.div>
+                )}
+              </div>
+
+              {/* Counter, back tables and the plants in front: drawn over the text */}
+              <div className="pointer-events-none absolute inset-0">
+                <Image
+                  src="/images/hero-fg.webp"
+                  alt=""
+                  fill
+                  sizes="130vw"
+                  loading="eager"
+                  className="object-cover"
+                  onLoad={() => setHeroFgReady(true)}
+                />
+              </div>
             </div>
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_35%,rgba(10,16,12,0.45),transparent_75%),linear-gradient(180deg,rgba(12,22,16,0.45)_0%,transparent_30%,transparent_70%,rgba(15,26,19,0.75)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(12,22,16,0.45)_0%,transparent_25%,transparent_75%,rgba(15,26,19,0.7)_100%)]" />
           </motion.div>
         </div>
 

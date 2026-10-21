@@ -149,6 +149,7 @@ export default function Drinks() {
         </div>
 
         <Statement
+          photo={{ src: "/images/drinks-garnish.webp", alt: "Un barman pose la touche finale sur un cocktail" }}
           title="Une expérience unique"
           body={
             <>

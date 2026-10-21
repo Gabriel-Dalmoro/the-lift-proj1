@@ -13,6 +13,7 @@ export default function Photo({
   parallax = 8,
   priority = false,
   caption = true,
+  captionText = "Visuel d’illustration",
   captionClass = "text-cream/70",
   overlay,
   position = "center",
@@ -24,6 +25,7 @@ export default function Photo({
   parallax?: number;
   priority?: boolean;
   caption?: boolean;
+  captionText?: string;
   captionClass?: string;
   overlay?: string;
   position?: string;
@@ -40,7 +42,7 @@ export default function Photo({
       {overlay && <div className={`absolute inset-0 ${overlay}`} />}
       {caption && (
         <span className={`absolute bottom-2 right-3 z-10 font-sans text-[10px] italic tracking-wide ${captionClass}`}>
-          Visuel d’illustration
+          {captionText}
         </span>
       )}
     </div>

@@ -17,6 +17,7 @@ export default function RiseBehind({
   riseEnd = 0.7,
   overlay,
   caption = true,
+  portrait,
   children,
 }: {
   src: string;
@@ -34,6 +35,9 @@ export default function RiseBehind({
   riseEnd?: number;
   overlay?: string;
   caption?: boolean;
+  /** Width/height of a portrait picture: on large screens it is shown whole, as a
+   *  full-height panel with side borders, instead of being zoomed to fill the width. */
+  portrait?: number;
   children: React.ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -47,6 +51,10 @@ export default function RiseBehind({
   return (
     <div ref={ref} className={`relative ${height}`}>
       <div className="sticky top-0 h-svh overflow-hidden">
+        <div
+          className={`relative mx-auto h-full overflow-hidden ${portrait ? "lg:w-[calc(100svh*var(--portrait))]" : ""}`}
+          style={portrait ? ({ "--portrait": portrait } as React.CSSProperties) : undefined}
+        >
         <motion.div className="absolute inset-0" style={{ scale: zoom }}>
           <Image src={src} alt={alt} fill sizes="100vw" loading="eager" className={fit} onLoad={() => setBgReady(true)} />
 
@@ -62,6 +70,7 @@ export default function RiseBehind({
           </div>
           {overlay && <div className={`pointer-events-none absolute inset-0 ${overlay}`} />}
         </motion.div>
+        </div>
 
         {caption && (
           <span className="absolute bottom-2 right-3 z-10 font-sans text-[10px] italic tracking-wide text-cream/70">

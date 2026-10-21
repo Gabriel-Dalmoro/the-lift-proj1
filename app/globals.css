@@ -97,3 +97,23 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Hero picture (2000×1493) sized like object-cover, then shifted so the kitchen window
+   (centre at 46.95% / 47.2% of the image) sits at the centre of the screen, never
+   leaving a gap at the edges. --z zooms in a little further. */
+.hero-stage {
+  --ar: 1.3396;
+  --z: 1.12;
+  --w: calc(max(100vw, 100svh * var(--ar)) * var(--z));
+  --h: calc(max(100vw / var(--ar), 100svh) * var(--z));
+  position: absolute;
+  width: var(--w);
+  height: var(--h);
+  left: clamp(calc(100vw - var(--w)), calc(50vw - 0.4695 * var(--w)), 0px);
+  top: clamp(calc(100svh - var(--h)), calc(50svh - 0.472 * var(--h)), 0px);
+}
+@media (min-width: 1024px) {
+  .hero-stage {
+    --z: 1.29;
+  }
+}

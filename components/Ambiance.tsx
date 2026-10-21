@@ -49,11 +49,12 @@ export default function Ambiance() {
         </Reveal>
         <Reveal delay={0.15}>
           <Photo
-            src="/images/ambiance-palms.webp"
-            alt="L’arrivée au 8e étage, enveloppée de végétation"
+            src="/images/ambiance-inspiration.webp"
+            alt="Image d’inspiration : une cour intérieure couverte de plantes, des tablées sous la verdure"
             className="aspect-[4/5] w-full rounded-sm"
             sizes="(min-width: 768px) 50vw, 100vw"
-            parallax={10}
+            parallax={6}
+            captionText="Image d’inspiration"
           />
         </Reveal>
       </div>

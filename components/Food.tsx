@@ -133,14 +133,15 @@ export default function Food() {
           src="/images/patio-evening.webp"
           fg="/images/patio-evening-fg.webp"
           alt="Une terrasse végétalisée au crépuscule, des tablées d’amis sous les guirlandes"
-          fit="object-cover object-[center_14%]"
+          fit="object-cover object-[center_14%] lg:object-center"
           height="h-[280svh]"
           from="62svh"
-          top="top-[17svh] lg:top-[40svh]"
+          top="top-[14svh] lg:top-[16svh]"
           riseEnd={0.6}
-          overlay="bg-[linear-gradient(to_bottom,#3b1d10,transparent_18%,transparent_80%,#3b1d10)]"
+          portrait={1493 / 2000}
+          overlay="bg-[linear-gradient(to_bottom,#3b1d10,transparent_14%,transparent_86%,#3b1d10)]"
         >
-          <p className="mx-auto max-w-[14ch] text-balance text-[2.1rem] text-cream drop-shadow-[0_2px_22px_rgba(0,0,0,0.7)] sm:max-w-[16ch] sm:text-6xl lg:text-[4rem]">
+          <p className="mx-auto max-w-[14em] text-balance text-[1.2rem] text-cream drop-shadow-[0_2px_22px_rgba(0,0,0,0.7)] sm:text-[1.7rem] lg:text-[1.75rem]">
             <Serif>Une cuisine de caractère, vivante et généreuse,</Serif>
             <Heavy>où le plaisir de partager devient une expérience à part entière.</Heavy>
           </p>

@@ -55,11 +55,21 @@ elif kind == 'skyline':
     h, w, _ = im.shape
     lum = im.mean(2)
     top = np.full(w, h * 0.9)
-    # Sky reference per row, from the clear middle of the frame.
-    sky_row = np.median(im[:, int(w * 0.35):int(w * 0.65)], axis=1)
+    # Sky reference per row, read from clear sky at the left (c0..c1) and, if given, at the
+    # right (c2..c3); blended across the frame so a bright sun on one side is still sky.
+    c0, c1 = (float(sys.argv[4]), float(sys.argv[5])) if len(sys.argv) > 5 else (0.35, 0.65)
+    left = np.median(im[:, int(w * c0):int(w * c1)], axis=1)
+    if len(sys.argv) > 7:
+        c2, c3 = float(sys.argv[6]), float(sys.argv[7])
+        right = np.median(im[:, int(w * c2):int(w * c3)], axis=1)
+    else:
+        right = left
+    cap = int(h * 0.42)
     for x in range(w):
+        t = x / (w - 1)
+        ref = left * (1 - t) + right * t
         for y in range(0, int(h * 0.9)):
-            d = np.abs(im[y, x] - sky_row[min(y, int(h * 0.42))]).sum()
+            d = np.abs(im[y, x] - ref[min(y, cap)]).sum()
             if d > 70:
                 top[x] = y
                 break
