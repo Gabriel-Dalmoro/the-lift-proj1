@@ -16,7 +16,7 @@ def save(src_rgb, top, out, feather=1.5):
     mask = (yy >= top[None, :]).astype(np.uint8) * 255
     m = Image.fromarray(mask).filter(ImageFilter.GaussianBlur(feather))
     im = Image.fromarray(src_rgb).convert('RGBA'); im.putalpha(m)
-    im.save(out, 'WEBP', quality=84, method=6)
+    im.save(out, 'WEBP', quality=92, method=6)
     prev = Image.new('RGBA', im.size, (255, 0, 160, 255)); prev.alpha_composite(im)
     prev.convert('RGB').resize((w // 3, h // 3)).save(out.rsplit('.', 1)[0] + '.preview.jpg')
 
@@ -47,7 +47,7 @@ if kind == 'terrace':
     m = m.filter(ImageFilter.GaussianBlur(1.5))
     im = Image.fromarray(sun).convert('RGBA'); im.putalpha(m)
     out = sys.argv[4]
-    im.save(out, 'WEBP', quality=84, method=6)
+    im.save(out, 'WEBP', quality=92, method=6)
     prev = Image.new('RGBA', im.size, (255, 0, 160, 255)); prev.alpha_composite(im)
     prev.convert('RGB').resize((w // 3, h // 3)).save(out.rsplit('.', 1)[0] + '.preview.jpg')
 elif kind == 'skyline':

@@ -34,7 +34,7 @@ if clear:
 m = Image.fromarray((fg * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.MinFilter(3))
 m = m.filter(ImageFilter.GaussianBlur(1.5))
 o = Image.fromarray(rgb).convert('RGBA'); o.putalpha(m)
-o.save(out, 'WEBP', quality=84, method=6)
+o.save(out, 'WEBP', quality=92, method=6)
 pv = Image.new('RGBA', o.size, (255, 0, 160, 255)); pv.alpha_composite(o)
 pv.convert('RGB').resize((w // 3, h // 3)).save(out.rsplit('.', 1)[0] + '.preview.jpg')
 print('ok', out)

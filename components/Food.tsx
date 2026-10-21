@@ -27,14 +27,17 @@ export default function Food() {
           </EtSi>
         </div>
 
-        <Photo
-          src="/images/food-golden.webp"
-          alt="Des assiettes à partager posées sur une table en bois, dans la lumière dorée du soir"
-          className="h-[85svh] w-full"
-          parallax={8}
-          position="center 45%"
-          overlay="bg-gradient-to-b from-[#3b1d10] via-transparent to-[#3b1d10]"
-        />
+        {/* Portrait photo: shown framed and whole, never stretched across the screen */}
+        <Reveal className="mx-auto w-[calc(100%-2.5rem)] max-w-lg">
+          <Photo
+            src="/images/food-golden.webp"
+            alt="Des assiettes à partager posées sur une table en bois, dans la lumière dorée du soir"
+            className="aspect-[3/4] w-full rounded-sm"
+            sizes="(min-width: 640px) 512px, 100vw"
+            parallax={4}
+            position="center 45%"
+          />
+        </Reveal>
 
         <div className="mx-auto max-w-2xl px-6 pt-24 text-center sm:pt-32">
           <Reveal>
@@ -132,8 +135,8 @@ export default function Food() {
           alt="Une terrasse végétalisée au crépuscule, des tablées d’amis sous les guirlandes"
           fit="object-cover object-[center_14%]"
           height="h-[280svh]"
-          from="70svh"
-          top="top-[13svh] sm:top-[15svh]"
+          from="62svh"
+          top="top-[17svh] lg:top-[40svh]"
           riseEnd={0.6}
           overlay="bg-[linear-gradient(to_bottom,#3b1d10,transparent_18%,transparent_80%,#3b1d10)]"
         >

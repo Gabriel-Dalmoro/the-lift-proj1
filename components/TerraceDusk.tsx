@@ -21,7 +21,9 @@ export default function TerraceDusk() {
   const zoom = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
   // The foreground cut-out is the sunset picture itself, so it only appears once the sunset is complete.
   const fgOpacity = useTransform(scrollYProgress, [0.6, 0.61], [0, 1]);
-  const lineY = useTransform(scrollYProgress, [0.64, 0.95], ["48svh", "0svh"]);
+  const lineY = useTransform(scrollYProgress, [0.64, 0.95], ["72svh", "0svh"]);
+  // The line only switches on once the foreground is fully opaque, so it never shows through it.
+  const lineOpacity = useTransform(scrollYProgress, [0.615, 0.62], [0, 1]);
   const [fgReady, setFgReady] = useState(false);
 
   return (
@@ -42,7 +44,7 @@ export default function TerraceDusk() {
           {/* Her line, between the background and the foreground */}
           <motion.div
             className={`absolute inset-x-0 top-[17svh] px-6 text-center lg:top-[8svh] ${fgReady ? "" : "invisible"}`}
-            style={{ y: lineY, opacity: fgOpacity }}
+            style={{ y: lineY, opacity: lineOpacity }}
           >
             <p className="mx-auto max-w-[14ch] text-balance text-[2.9rem] text-cream drop-shadow-[0_2px_22px_rgba(0,0,0,0.65)] sm:text-7xl lg:text-[5.2rem]">
               <Serif>Un ailleurs inattendu,</Serif>

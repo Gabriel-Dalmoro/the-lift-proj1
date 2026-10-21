@@ -2,7 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    formats: ["image/avif", "image/webp"],
+    // Serve the photos exactly as exported in public/images (already WebP, high quality).
+    // Resizing on the fly made full-screen crops on phones look soft.
+    unoptimized: true,
   },
   async headers() {
     return [

@@ -72,14 +72,16 @@ export default function Drinks() {
           </Reveal>
         </div>
 
-        <Photo
-          src="/images/drinks-tray.webp"
-          alt="Un serveur porte un plateau de cocktails ambrés dans la pénombre du bar"
-          className="mx-auto h-[85svh] w-full max-w-6xl"
-          position="center 62%"
-          parallax={6}
-          overlay="bg-gradient-to-b from-night via-transparent to-night"
-        />
+        {/* Portrait photo: shown framed and whole, never stretched across the screen */}
+        <Reveal className="mx-auto w-[calc(100%-2.5rem)] max-w-lg pb-8">
+          <Photo
+            src="/images/drinks-tray.webp"
+            alt="Un serveur porte un plateau de cocktails ambrés dans la pénombre du bar"
+            className="aspect-[4/5] w-full rounded-sm"
+            sizes="(min-width: 640px) 512px, 100vw"
+            parallax={4}
+          />
+        </Reveal>
 
         <Statement
           photo={{ src: "/images/drinks-wine.webp", alt: "Un vin rouge servi dans un verre, lumière chaude" }}
