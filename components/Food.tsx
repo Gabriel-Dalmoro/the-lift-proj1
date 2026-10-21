@@ -26,10 +26,11 @@ export default function Food() {
         </div>
 
         <Photo
-          src="/images/food-hero.webp"
-          alt="Des amis trinquent autour d’une table garnie, à la lueur des bougies"
-          className="h-[80svh] w-full"
-          parallax={10}
+          src="/images/food-golden.webp"
+          alt="Des assiettes à partager posées sur une table en bois, dans la lumière dorée du soir"
+          className="h-[85svh] w-full"
+          parallax={8}
+          position="center 45%"
           overlay="bg-gradient-to-b from-[#3b1d10] via-transparent to-[#3b1d10]"
         />
 
@@ -57,31 +58,14 @@ export default function Food() {
         </div>
 
         {/* Abundance: plates in the middle of the table */}
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-3 px-3 sm:gap-4 sm:px-6">
-          <Reveal className="col-span-2">
+        <div className="mx-auto max-w-3xl px-3 sm:px-6">
+          <Reveal>
             <Photo
-              src="/images/food-table.webp"
-              alt="Vue du dessus d’une grande table couverte d’assiettes à partager"
-              className="aspect-[16/10] w-full rounded-sm"
-              sizes="(min-width: 1152px) 1152px, 100vw"
-            />
-          </Reveal>
-          <Reveal delay={0.05}>
-            <Photo
-              src="/images/food-hands.webp"
-              alt="Des mains se servent dans des plats posés au centre"
+              src="/images/food-spread.webp"
+              alt="Vue du dessus de petites assiettes à partager : crudités, sardines, crevettes, tataki, viande grillée"
               className="aspect-[4/5] w-full rounded-sm"
-              sizes="50vw"
-              position="40% center"
-            />
-          </Reveal>
-          <Reveal delay={0.15}>
-            <Photo
-              src="/images/food-cheers.webp"
-              alt="Un groupe d’amis trinque autour de plats partagés"
-              className="aspect-[4/5] w-full rounded-sm"
-              sizes="50vw"
-              position="35% center"
+              sizes="(min-width: 768px) 768px, 100vw"
+              parallax={5}
             />
           </Reveal>
         </div>

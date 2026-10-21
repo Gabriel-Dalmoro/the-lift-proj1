@@ -18,10 +18,12 @@ const SENSES = [
 export default function Ambiance() {
   const layered = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: layered, offset: ["start end", "end start"] });
-  // Real leaves in front of the room, each layer at its own speed: the nearest move fastest.
-  const monsteraY = useTransform(scrollYProgress, [0, 1], ["18%", "-22%"]);
-  const bananaY = useTransform(scrollYProgress, [0, 1], ["28%", "-30%"]);
-  const hangingY = useTransform(scrollYProgress, [0, 1], ["-10%", "14%"]);
+  // Real leaves in front of the room, each layer at its own speed. Every cut edge of a
+  // cut-out sits off-screen, and layers only ever move further off-screen, never back in.
+  const hangingY = useTransform(scrollYProgress, [0, 1], ["-22%", "0%"]);
+  const fernY = useTransform(scrollYProgress, [0, 1], ["22%", "0%"]);
+  const monsteraY = useTransform(scrollYProgress, [0, 1], ["30%", "0%"]);
+  const bananaY = useTransform(scrollYProgress, [0, 1], ["45%", "0%"]);
 
   return (
     <section data-chapter="L’ambiance" className="relative bg-jungle-deep text-cream">
@@ -63,48 +65,65 @@ export default function Ambiance() {
           parallax={6}
           overlay="bg-gradient-to-b from-jungle-deep via-jungle-deep/30 to-jungle-deep"
         />
-        {/* Hanging leaf, mid distance, entering from the top right */}
-        <motion.div
-          className="pointer-events-none absolute -right-[12%] -top-[6%] w-[62%] sm:-right-[4%] sm:w-[30%]"
-          style={{ y: hangingY }}
-        >
-          <Image
-            src="/images/leaves-hanging.webp"
-            alt=""
-            width={1200}
-            height={1386}
-            sizes="(min-width: 640px) 30vw, 62vw"
-            className="h-auto w-full -scale-x-100 brightness-[0.8] saturate-[0.95] [mask-image:linear-gradient(to_bottom,black_70%,transparent)]"
-          />
-        </motion.div>
-        {/* Monstera cluster rising from the bottom left, near */}
-        <motion.div
-          className="pointer-events-none absolute -bottom-[4%] -left-[18%] w-[92%] sm:-bottom-[8%] sm:-left-[4%] sm:w-[36%]"
-          style={{ y: monsteraY }}
-        >
-          <Image
-            src="/images/leaves-monstera.webp"
-            alt=""
-            width={1200}
-            height={1400}
-            sizes="(min-width: 640px) 36vw, 78vw"
-            className="h-auto w-full brightness-[0.75] blur-[1px] [mask-image:linear-gradient(to_top,black_75%,transparent)]"
-          />
-        </motion.div>
-        {/* Banana leaves from the bottom right, nearest */}
-        <motion.div
-          className="pointer-events-none absolute -bottom-[3%] -right-[40%] w-[130%] sm:-bottom-[10%] sm:-right-[6%] sm:w-[52%]"
-          style={{ y: bananaY }}
-        >
-          <Image
-            src="/images/leaves-banana.webp"
-            alt=""
-            width={1800}
-            height={1075}
-            sizes="(min-width: 640px) 52vw, 115vw"
-            className="h-auto w-full brightness-[0.68] blur-[2.5px] [mask-image:linear-gradient(to_right,transparent,black_25%)]"
-          />
-        </motion.div>
+        {/* Leaves fade into the dark at the section's top and bottom instead of being cut by its edges */}
+        <div className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_14%,black_86%,transparent)]">
+          {/* Monstera leaf hanging from the top right; turned over so both cut sides are off-screen */}
+          <motion.div
+            className="pointer-events-none absolute -right-[8%] -top-[3%] w-[60%] sm:-right-[2%] sm:w-[28%]"
+            style={{ y: hangingY }}
+          >
+            <Image
+              src="/images/leaves-hanging.webp"
+              alt=""
+              width={1200}
+              height={1386}
+              sizes="(min-width: 640px) 28vw, 60vw"
+              className="h-auto w-full rotate-180 brightness-[0.8] saturate-[0.95]"
+            />
+          </motion.div>
+          {/* Fern rising from the bottom left */}
+          <motion.div
+            className="pointer-events-none absolute -bottom-[3%] -left-[10%] w-[58%] sm:-left-[2%] sm:w-[26%]"
+            style={{ y: fernY }}
+          >
+            <Image
+              src="/images/leaves-fern.webp"
+              alt=""
+              width={1200}
+              height={1507}
+              sizes="(min-width: 640px) 26vw, 58vw"
+              className="h-auto w-full brightness-[0.7] saturate-[0.9]"
+            />
+          </motion.div>
+          {/* Whole monstera plant rooted at the bottom right */}
+          <motion.div
+            className="pointer-events-none absolute -bottom-[3%] -right-[14%] w-[62%] sm:-right-[3%] sm:w-[27%]"
+            style={{ y: monsteraY }}
+          >
+            <Image
+              src="/images/leaves-monstera.webp"
+              alt=""
+              width={1123}
+              height={1792}
+              sizes="(min-width: 640px) 27vw, 62vw"
+              className="h-auto w-full brightness-[0.75] blur-[0.5px]"
+            />
+          </motion.div>
+          {/* Banana leaves, nearest and softest; flipped so their cut side runs off the left edge */}
+          <motion.div
+            className="pointer-events-none absolute -bottom-[3%] -left-[18%] w-[105%] sm:-left-[6%] sm:w-[48%]"
+            style={{ y: bananaY }}
+          >
+            <Image
+              src="/images/leaves-banana.webp"
+              alt=""
+              width={1800}
+              height={1075}
+              sizes="(min-width: 640px) 48vw, 105vw"
+              className="h-auto w-full -scale-x-100 brightness-[0.6] blur-[3px] [mask-image:linear-gradient(to_right,transparent,black_30%)]"
+            />
+          </motion.div>
+        </div>
         <div className="relative z-10 flex h-full items-center justify-center px-6">
           <Reveal className="max-w-2xl text-center">
             <p className="font-serif text-2xl font-light leading-snug sm:text-[2.1rem]">

@@ -10,35 +10,24 @@ function Statement({
   children,
   title,
   body,
-  src,
-  alt,
-  flip = false,
-  position,
 }: {
   children: React.ReactNode;
   /** Her section title, e.g. "Une cave sans frontières" */
   title: string;
   /** Her short presentation text */
   body: React.ReactNode;
-  src: string;
-  alt: string;
-  flip?: boolean;
-  position?: string;
 }) {
   return (
-    <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 sm:py-28 md:grid-cols-2 md:gap-14">
-      <div className={flip ? "md:order-2" : ""}>
-        <Reveal>{children}</Reveal>
+    <div className="mx-auto grid max-w-6xl items-center gap-10 border-t border-brass/15 px-5 py-20 sm:py-28 md:grid-cols-2 md:gap-16">
+      <Reveal>{children}</Reveal>
+      <div>
         <Reveal delay={0.1}>
-          <h3 className="mt-10 font-serif text-2xl font-light italic text-cream sm:text-3xl">{title}</h3>
+          <h3 className="font-serif text-2xl font-light italic text-cream sm:text-3xl">{title}</h3>
         </Reveal>
         <Reveal delay={0.2} className="mt-5 space-y-4 text-base leading-relaxed text-cream/75 sm:text-lg">
           {body}
         </Reveal>
       </div>
-      <Reveal delay={0.15} className={flip ? "md:order-1" : ""}>
-        <Photo src={src} alt={alt} className="aspect-[4/5] w-full rounded-sm" sizes="(min-width: 768px) 50vw, 100vw" position={position} />
-      </Reveal>
     </div>
   );
 }
@@ -64,9 +53,16 @@ export default function Drinks() {
           </Reveal>
         </div>
 
+        <Photo
+          src="/images/drinks-tray.webp"
+          alt="Un serveur porte un plateau de cocktails ambrés dans la pénombre du bar"
+          className="mx-auto h-[85svh] w-full max-w-6xl"
+          position="center 62%"
+          parallax={6}
+          overlay="bg-gradient-to-b from-night via-transparent to-night"
+        />
+
         <Statement
-          src="/images/drinks-wine.webp"
-          alt="Un vin rouge versé dans un verre, lumière chaude"
           title="Une cave sans frontières"
           body={
             <>
@@ -95,9 +91,6 @@ export default function Drinks() {
         </Statement>
 
         <Statement
-          src="/images/drinks-cocktail.webp"
-          alt="Un cocktail ambré garni d’orange et d’une fleur"
-          flip
           title="L’esprit d’une collaboration locale"
           body={
             <>
@@ -134,9 +127,6 @@ export default function Drinks() {
         </div>
 
         <Statement
-          src="/images/drinks-bartender.webp"
-          alt="Un barman prépare un cocktail devant le comptoir"
-          position="35% center"
           title="Une expérience unique"
           body={
             <>
@@ -162,14 +152,6 @@ export default function Drinks() {
             rêves
           </p>
         </Statement>
-
-        <Photo
-          src="/images/drinks-garnish.webp"
-          alt="Un barman pose la touche finale sur un cocktail"
-          className="mx-auto h-[70svh] w-full max-w-6xl"
-          position="center 30%"
-          overlay="bg-gradient-to-b from-night via-transparent to-night"
-        />
 
         <div className="mx-auto max-w-2xl px-6 pb-32 pt-20 text-center sm:pb-44">
           <Reveal>

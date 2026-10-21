@@ -15,8 +15,10 @@ export default function TerraceDusk() {
   const mask = useMotionTemplate`linear-gradient(to bottom, black ${edge}%, transparent calc(${edge}% + 25%))`;
   const glow = useTransform(scrollYProgress, [0.3, 0.8], [0, 1]);
   const zoom = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
-  const lineOpacity = useTransform(scrollYProgress, [0.78, 0.92], [0, 1]);
-  const lineY = useTransform(scrollYProgress, [0.78, 0.92], [24, 0]);
+  // Her line is revealed by the same soft edge, sweeping down after the picture.
+  const lineEdge = useTransform(scrollYProgress, [0.72, 0.95], [-60, 130]);
+  const lineMask = useMotionTemplate`linear-gradient(to bottom, black ${lineEdge}%, transparent calc(${lineEdge}% + 45%))`;
+  const lineY = useTransform(scrollYProgress, [0.72, 0.95], [18, 0]);
 
   return (
     <div ref={ref} className="relative h-[320svh]">
@@ -49,7 +51,7 @@ export default function TerraceDusk() {
 
         <motion.div
           className="absolute inset-x-0 bottom-[16svh] z-10 px-6 text-center"
-          style={{ opacity: lineOpacity, y: lineY }}
+          style={{ y: lineY, maskImage: lineMask, WebkitMaskImage: lineMask }}
         >
           <p
             className="mx-auto max-w-[16ch] text-balance font-serif text-4xl font-light italic leading-tight text-cream drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)] sm:text-6xl"
