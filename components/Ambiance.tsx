@@ -20,10 +20,12 @@ export default function Ambiance() {
   const { scrollYProgress } = useScroll({ target: layered, offset: ["start end", "end start"] });
   // Real leaves in front of the room, each layer at its own speed. Every cut edge of a
   // cut-out sits off-screen, and layers only ever move further off-screen, never back in.
-  const hangingY = useTransform(scrollYProgress, [0, 1], ["-22%", "0%"]);
-  const fernY = useTransform(scrollYProgress, [0, 1], ["22%", "0%"]);
-  const monsteraY = useTransform(scrollYProgress, [0, 1], ["30%", "0%"]);
-  const bananaY = useTransform(scrollYProgress, [0, 1], ["45%", "0%"]);
+  const hangingY = useTransform(scrollYProgress, [0, 1], ["-45%", "0%"]);
+  const hangingX = useTransform(scrollYProgress, [0, 1], ["10%", "0%"]);
+  const monsteraY = useTransform(scrollYProgress, [0, 1], ["60%", "0%"]);
+  const monsteraX = useTransform(scrollYProgress, [0, 1], ["12%", "0%"]);
+  const bananaY = useTransform(scrollYProgress, [0, 1], ["95%", "0%"]);
+  const bananaX = useTransform(scrollYProgress, [0, 1], ["-14%", "0%"]);
 
   return (
     <section data-chapter="L’ambiance" className="relative bg-jungle-deep text-cream">
@@ -70,7 +72,7 @@ export default function Ambiance() {
           {/* Monstera leaf hanging from the top right; turned over so both cut sides are off-screen */}
           <motion.div
             className="pointer-events-none absolute -right-[8%] -top-[3%] w-[60%] sm:-right-[2%] sm:w-[28%]"
-            style={{ y: hangingY }}
+            style={{ y: hangingY, x: hangingX }}
           >
             <Image
               src="/images/leaves-hanging.webp"
@@ -81,24 +83,10 @@ export default function Ambiance() {
               className="h-auto w-full rotate-180 brightness-[0.8] saturate-[0.95]"
             />
           </motion.div>
-          {/* Fern rising from the bottom left */}
-          <motion.div
-            className="pointer-events-none absolute -bottom-[3%] -left-[10%] w-[58%] sm:-left-[2%] sm:w-[26%]"
-            style={{ y: fernY }}
-          >
-            <Image
-              src="/images/leaves-fern.webp"
-              alt=""
-              width={1200}
-              height={1507}
-              sizes="(min-width: 640px) 26vw, 58vw"
-              className="h-auto w-full brightness-[0.7] saturate-[0.9]"
-            />
-          </motion.div>
           {/* Whole monstera plant rooted at the bottom right */}
           <motion.div
             className="pointer-events-none absolute -bottom-[3%] -right-[14%] w-[62%] sm:-right-[3%] sm:w-[27%]"
-            style={{ y: monsteraY }}
+            style={{ y: monsteraY, x: monsteraX }}
           >
             <Image
               src="/images/leaves-monstera.webp"
@@ -112,7 +100,7 @@ export default function Ambiance() {
           {/* Banana leaves, nearest and softest; flipped so their cut side runs off the left edge */}
           <motion.div
             className="pointer-events-none absolute -bottom-[3%] -left-[18%] w-[105%] sm:-left-[6%] sm:w-[48%]"
-            style={{ y: bananaY }}
+            style={{ y: bananaY, x: bananaX }}
           >
             <Image
               src="/images/leaves-banana.webp"

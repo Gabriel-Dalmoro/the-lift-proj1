@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import LiftDoors from "./LiftDoors";
 import Logo from "./Logo";
+import SkylineQuote from "./SkylineQuote";
 
 export interface ClosingProps {
   /** Flip to true if Sabrina approves adding "une vision de Sabrina" */
@@ -12,26 +13,10 @@ export interface ClosingProps {
 
 export default function Closing({ showSabrinaCredit = false }: ClosingProps) {
   const doorSectionRef = useRef<HTMLDivElement | null>(null);
-  const quoteRef = useRef<HTMLDivElement | null>(null);
-  const [quoteVisible, setQuoteVisible] = useState(false);
   const [doorsClosed, setDoorsClosed] = useState(false);
   const [plaqueVisible, setPlaqueVisible] = useState(false);
 
-  // Observer 1: Reveal final hospitality sentence alone on screen
-  useEffect(() => {
-    const el = quoteRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setQuoteVisible(true);
-      },
-      { threshold: 0.35 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  // Observer 2: Softly close the lift doors when scrolling into the end card
+  // Softly close the lift doors when scrolling into the end card
   useEffect(() => {
     const el = doorSectionRef.current;
     if (!el) return;
@@ -58,30 +43,8 @@ export default function Closing({ showSabrinaCredit = false }: ClosingProps) {
 
   return (
     <footer aria-label="Conclusion" data-chapter="The Lift" className="relative w-full select-none">
-      {/* ===================================================================
-          BEAT 1: HER FINAL SENTENCE ALONE ON SCREEN
-         =================================================================== */}
-      <div
-        ref={quoteRef}
-        className="relative flex min-h-svh w-full items-center justify-center bg-cream px-6 py-24 text-center sm:px-12"
-      >
-        <div
-          className="mx-auto max-w-4xl transition-all duration-[1500ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-          style={{
-            opacity: quoteVisible ? 1 : 0,
-            transform: quoteVisible ? "translateY(0px)" : "translateY(28px)",
-          }}
-        >
-          <div className="mx-auto mb-10 h-12 w-[1px] bg-gradient-to-b from-transparent via-[#B89758] to-[#B89758]" />
-
-          <blockquote className="font-serif text-3xl leading-[1.28] font-light tracking-[-0.01em] text-[#1C1917] sm:text-5xl md:text-[3.35rem]">
-            Parce qu’au fond, nos clients oublieront peut-être ce qu’ils ont commandé, mais jamais la façon
-            dont nous les avons fait se sentir.
-          </blockquote>
-
-          <div className="mx-auto mt-10 h-12 w-[1px] bg-gradient-to-b from-[#B89758] to-transparent" />
-        </div>
-      </div>
+      {/* BEAT 1: her final sentence rises from behind Lyon's skyline */}
+      <SkylineQuote />
 
       {/* ===================================================================
           BEAT 2: QUIET END CARD — BRASS LIFT DOORS CLOSING SOFTLY

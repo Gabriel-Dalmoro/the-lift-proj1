@@ -9,6 +9,5 @@
 | terrace-day.webp, terrace-sunset.webp | AI-generated from real photos of The Lift (Gabriel) |
 | leaves-hanging.webp (cut-out) | [1524235](https://www.pexels.com/photo/1524235/) |
 | leaves-monstera.webp (cut-out) | [12684656](https://www.pexels.com/photo/12684656/) |
-| leaves-fern.webp (cut-out) | [17085794](https://www.pexels.com/photo/17085794/) |
 | leaves-banana.webp (cut-out) | [4539405](https://www.pexels.com/photo/4539405/) |
 | food-golden.webp, food-spread.webp, drinks-tray.webp, closing-lyon.webp | Supplied by Gabriel |
