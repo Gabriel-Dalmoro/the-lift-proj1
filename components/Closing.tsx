@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Logo from "./Logo";
 import Photo from "./Photo";
 import Reveal from "./Reveal";
 
@@ -57,12 +58,9 @@ export default function Closing() {
           animate={{ opacity: inView ? 1 : 0 }}
           transition={{ duration: 1.6, delay: 2.8 }}
         >
-          <p
-            className="rounded-sm bg-[#0b0806]/85 px-8 py-5 font-serif text-4xl font-light tracking-[0.08em] text-brass-light shadow-[inset_0_2px_10px_rgba(0,0,0,0.9)] sm:text-6xl"
-            style={{ fontVariationSettings: '"opsz" 144' }}
-          >
-            The Lift
-          </p>
+          <div className="rounded-sm bg-[#0b0806]/85 px-8 pb-6 pt-4 shadow-[inset_0_2px_10px_rgba(0,0,0,0.9)] sm:px-12 sm:pb-8">
+            <Logo className="w-44 text-brass-light sm:w-64" cable={60} />
+          </div>
         </motion.div>
       </div>
     </section>

@@ -7,19 +7,20 @@ The full brief and the decisions are in `the-lift-project-handoff.md`.
 
 ```bash
 npm install
-echo "SITE_PASSWORD=choose-one" > .env.local
 npm run dev
 ```
 
-Open http://localhost:3000, you land on the lift panel, type the password, press "8".
+Open http://localhost:3000. The logo's "i" rides up its cable while the page loads, then press "8" on the lift panel.
 
 ## Deploy (Vercel)
 
 1. Import the repo in Vercel.
-2. Add the environment variable `SITE_PASSWORD`.
-3. Deploy. Without `SITE_PASSWORD` nobody can get in (the gate refuses everything).
+2. Framework preset: Next.js. No environment variables needed.
+3. Deploy.
 
-Privacy: password cookie checked in `middleware.ts`, `noindex` meta, `X-Robots-Tag` header on every response, `robots.txt` disallows all.
+No password: the link itself is private. Search engines are kept out with a `noindex` meta, an `X-Robots-Tag` header on every response and a `robots.txt` that disallows all.
+
+The logo in `components/Logo.tsx` is redrawn from The Lift's own artwork.
 
 ## Images
 
