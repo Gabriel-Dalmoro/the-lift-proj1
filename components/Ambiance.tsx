@@ -21,8 +21,8 @@ export default function Ambiance() {
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-24 sm:py-36 md:grid-cols-2 md:gap-16">
         <Reveal>
           <p className="font-serif text-2xl font-light leading-snug text-cream/95 sm:text-3xl">
-            À huit étages de l'agitation lyonnaise, j'imagine un lieu où la nature reprend ses droits, une jungle urbaine
-            luxuriante, une oasis culinaire où le temps semble suspendu.
+            Plus qu'un restaurant, je souhaite imaginer un lieu de vie et d'émotions, où l'on vient autant pour savourer
+            que pour ressentir, partager et prolonger l'instant.
           </p>
         </Reveal>
         <Reveal delay={0.15}>

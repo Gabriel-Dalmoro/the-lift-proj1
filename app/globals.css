@@ -14,6 +14,7 @@
   --color-ink: #2a1e16;
 
   --font-serif: var(--font-fraunces), "Times New Roman", serif;
+  --animate-shake: shake 0.4s ease-in-out;
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
 }
 
@@ -37,6 +38,14 @@ body {
 ::selection {
   background: var(--color-brass);
   color: var(--color-night);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
 }
 
 /* Brushed brass for the lift doors and panel */

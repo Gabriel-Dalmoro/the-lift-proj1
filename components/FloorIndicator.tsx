@@ -17,7 +17,9 @@ export default function FloorIndicator() {
         const r = s.getBoundingClientRect();
         return r.top <= mid && r.bottom >= mid;
       });
-      setLabel(window.scrollY > window.innerHeight * 0.6 ? current?.dataset.chapter ?? null : null);
+      // The end card has its own lift display, so the small one steps aside there.
+      const chapter = current?.dataset.chapter;
+      setLabel(window.scrollY > window.innerHeight * 0.6 && chapter !== "The Lift" ? chapter ?? null : null);
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
