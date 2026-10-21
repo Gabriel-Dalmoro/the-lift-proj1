@@ -1,8 +1,7 @@
 import EtSi from "./EtSi";
 import Photo from "./Photo";
-import { Heavy, Serif } from "./LogoType";
 import Reveal from "./Reveal";
-import RiseBehind from "./RiseBehind";
+import PatioScene from "./PatioScene";
 
 const DISHES = [
   { name: "Les Gougères des Sommets", text: "Gougères cacio e pepe, poivre noir, pecorino" },
@@ -128,24 +127,8 @@ export default function Food() {
           </Reveal>
         </div>
 
-        {/* Her closing line rises from behind the terrace parapet, over the city at dusk */}
-        <RiseBehind
-          src="/images/patio-evening.webp"
-          fg="/images/patio-evening-fg.webp"
-          alt="Une terrasse végétalisée au crépuscule, des tablées d’amis sous les guirlandes"
-          fit="object-cover object-[center_14%] lg:object-center"
-          height="h-[280svh]"
-          from="62svh"
-          top="top-[14svh] lg:top-[16svh]"
-          riseEnd={0.6}
-          portrait={1493 / 2000}
-          overlay="bg-[linear-gradient(to_bottom,#3b1d10,transparent_14%,transparent_86%,#3b1d10)]"
-        >
-          <p className="mx-auto max-w-[14em] text-balance text-[1.2rem] text-cream drop-shadow-[0_2px_22px_rgba(0,0,0,0.7)] sm:text-[1.7rem] lg:text-[1.75rem]">
-            <Serif>Une cuisine de caractère, vivante et généreuse,</Serif>
-            <Heavy>où le plaisir de partager devient une expérience à part entière.</Heavy>
-          </p>
-        </RiseBehind>
+        {/* Her closing line settles into focus over the patio at dusk */}
+        <PatioScene />
         <div className="h-24 sm:h-32" />
       </div>
     </section>

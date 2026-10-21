@@ -43,10 +43,10 @@ export default function TerraceDusk() {
 
           {/* Her line, between the background and the foreground */}
           <motion.div
-            className={`absolute inset-x-0 top-[25svh] px-6 text-center lg:top-[29svh] ${fgReady ? "" : "invisible"}`}
+            className={`absolute inset-x-0 top-[29svh] px-6 text-center lg:top-[33svh] ${fgReady ? "" : "invisible"}`}
             style={{ y: lineY, opacity: lineOpacity }}
           >
-            <p className="mx-auto max-w-[12em] text-balance text-[1.55rem] text-cream drop-shadow-[0_2px_22px_rgba(0,0,0,0.65)] sm:text-[2.4rem] lg:text-[3.1rem]">
+            <p className="mx-auto max-w-[24em] text-balance text-[1rem] text-cream drop-shadow-[0_2px_22px_rgba(0,0,0,0.65)] sm:text-[1.3rem] lg:text-[1.35rem]">
               <Serif>Un ailleurs inattendu,</Serif>
               <Heavy>sans jamais quitter Lyon.</Heavy>
             </p>

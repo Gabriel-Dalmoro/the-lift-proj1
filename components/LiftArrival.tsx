@@ -141,7 +141,7 @@ export default function LiftArrival({ isUnlocked, onOpened, children }: LiftArri
                     }`}
                     style={{ top: heroTextTop }}
                   >
-                    <h1 className="text-balance text-[6.6cqw] text-[#1c1410] [text-shadow:0_0_18px_rgba(255,248,236,0.85)]">
+                    <h1 className="text-balance text-[3.4cqw] text-[#1c1410] [text-shadow:0_0_18px_rgba(255,248,236,0.85)]">
                       <Serif>Et si, au cœur de la ville, nous pouvions nous offrir le luxe de</Serif>
                       <Heavy>nous évader sans partir&nbsp;?</Heavy>
                     </h1>

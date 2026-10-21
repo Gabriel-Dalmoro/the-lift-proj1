@@ -64,12 +64,12 @@ export default function Closing({ showSabrinaCredit = true }: ClosingProps) {
 
           {/* Her final sentence: rises from behind the city and settles in the sky above the towers */}
           <motion.div
-            className={`absolute inset-x-0 top-[4.5svh] px-6 text-center transition-opacity duration-500 lg:top-[4svh] ${
+            className={`absolute inset-x-0 top-[3svh] px-4 text-center transition-opacity duration-500 sm:px-8 lg:top-[4svh] ${
               bgReady && fgReady ? "opacity-100" : "opacity-0"
             }`}
             style={{ y: textY }}
           >
-            <p className="mx-auto max-w-[16em] text-balance text-[1.3rem] text-[#2a1a10] [text-shadow:0_0_20px_rgba(255,240,210,0.6)] sm:text-[1.7rem] lg:text-[2rem]">
+            <p className="mx-auto max-w-6xl text-balance text-[0.9rem] text-[#2a1a10] [text-shadow:0_0_20px_rgba(255,240,210,0.6)] sm:text-[1.1rem] lg:text-[1.4rem]">
               <Serif>Parce qu’au fond, nos clients oublieront peut-être ce qu’ils ont commandé,</Serif>
               <Heavy>mais jamais la façon dont nous les avons fait se sentir.</Heavy>
             </p>
