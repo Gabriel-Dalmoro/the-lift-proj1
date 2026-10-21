@@ -33,7 +33,7 @@ export default function Ambiance() {
       <div className="mx-auto max-w-3xl px-6 pt-28 text-center sm:pt-36">
         <Reveal>
           <p className="text-balance font-display text-[1.9rem] italic leading-[1.2] text-cream/95 sm:text-5xl">
-            À huit étages de l’agitation lyonnaise, j’imagine un lieu où la nature reprend ses droits, une jungle urbaine
+            Au 8<sup>e</sup> étage du bâtiment du Lumen, loin de l’agitation lyonnaise, j’imagine un lieu où la nature reprend ses droits, une jungle urbaine
             luxuriante, une oasis culinaire où le temps semble suspendu.
           </p>
         </Reveal>
