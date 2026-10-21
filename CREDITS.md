@@ -5,7 +5,6 @@
 | ambiance-hero.webp | [10133364](https://www.pexels.com/photo/10133364/) |
 | ambiance-night.webp | [4577179](https://www.pexels.com/photo/4577179/) |
 | ambiance-palms.webp | [9989484](https://www.pexels.com/photo/9989484/) |
-| ambiance-room.webp | [4997875](https://www.pexels.com/photo/4997875/) |
 | closing-lyon.webp | [11909554](https://www.pexels.com/photo/11909554/) |
 | drinks-bartender.webp | [4485382](https://www.pexels.com/photo/4485382/) |
 | drinks-cocktail.webp | [6469416](https://www.pexels.com/photo/6469416/) |
@@ -20,3 +19,4 @@
 | leaves-monstera.webp (cut-out) | [5858235](https://www.pexels.com/photo/5858235/) |
 | leaves-banana.webp (cut-out) | [4539405](https://www.pexels.com/photo/4539405/) |
 | leaves-hanging.webp (cut-out) | [1524235](https://www.pexels.com/photo/1524235/) |
+| terrace-day.webp, terrace-sunset.webp | AI-generated from real photos of The Lift (Gabriel) |

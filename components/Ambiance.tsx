@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Photo from "./Photo";
 import Reveal from "./Reveal";
+import TerraceDusk from "./TerraceDusk";
 
 const KEYWORDS = ["Jungle urbaine", "Oasis culinaire", "Évasion", "Immersion", "Dépaysement"];
 
@@ -128,26 +129,8 @@ export default function Ambiance() {
         </Reveal>
       </div>
 
-      {/* Closing line over the room */}
-      <div className="relative h-[100svh] min-h-[560px]">
-        <Photo
-          src="/images/ambiance-room.webp"
-          alt="Des convives à table dans une salle couverte de plantes"
-          className="absolute inset-0"
-          parallax={8}
-          overlay="bg-gradient-to-b from-jungle-deep via-jungle-deep/20 to-jungle"
-        />
-        <div className="relative z-10 flex h-full items-end justify-center px-6 pb-[18svh]">
-          <Reveal className="text-center">
-            <p
-              className="mx-auto max-w-[16ch] text-balance font-serif text-4xl font-light italic leading-tight sm:text-6xl"
-              style={{ fontVariationSettings: '"opsz" 144, "SOFT" 80' }}
-            >
-              Un ailleurs inattendu, sans jamais quitter Lyon.
-            </p>
-          </Reveal>
-        </div>
-      </div>
+      {/* The real terrace, day turning to sunset as you scroll, then her closing line */}
+      <TerraceDusk />
     </section>
   );
 }
