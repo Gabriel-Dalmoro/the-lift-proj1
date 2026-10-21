@@ -17,4 +17,6 @@
 | food-table.webp | [3184180](https://www.pexels.com/photo/3184180/) |
 | hosp-madeleines.webp | [5194493](https://www.pexels.com/photo/5194493/) |
 | hosp-welcome.webp | [4350094](https://www.pexels.com/photo/4350094/) |
-| leaves-left.webp, leaves-right.webp | Drawn for this site (no photo) |
+| leaves-monstera.webp (cut-out) | [5858235](https://www.pexels.com/photo/5858235/) |
+| leaves-banana.webp (cut-out) | [4539405](https://www.pexels.com/photo/4539405/) |
+| leaves-hanging.webp (cut-out) | [1524235](https://www.pexels.com/photo/1524235/) |

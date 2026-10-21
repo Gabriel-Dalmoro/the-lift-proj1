@@ -11,9 +11,10 @@ const KEYWORDS = ["Jungle urbaine", "Oasis culinaire", "Évasion", "Immersion", 
 export default function Ambiance() {
   const layered = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: layered, offset: ["start end", "end start"] });
-  // Foreground leaves move faster than the room behind them.
-  const leavesY = useTransform(scrollYProgress, [0, 1], ["30%", "-45%"]);
-  const leavesRightY = useTransform(scrollYProgress, [0, 1], ["45%", "-30%"]);
+  // Real leaves in front of the room, each layer at its own speed: the nearest move fastest.
+  const monsteraY = useTransform(scrollYProgress, [0, 1], ["18%", "-22%"]);
+  const bananaY = useTransform(scrollYProgress, [0, 1], ["28%", "-30%"]);
+  const hangingY = useTransform(scrollYProgress, [0, 1], ["-10%", "14%"]);
 
   return (
     <section data-chapter="L'ambiance" className="relative bg-jungle-deep text-cream">
@@ -45,12 +46,47 @@ export default function Ambiance() {
           parallax={6}
           overlay="bg-gradient-to-b from-jungle-deep via-jungle-deep/30 to-jungle-deep"
         />
-        {/* Drawn palm fronds: the far layer is sharp, the near one soft and faster */}
-        <motion.div className="pointer-events-none absolute -left-[22%] top-[-5%] h-[95%] w-[80%] sm:-left-[6%] sm:w-[42%]" style={{ y: leavesY }}>
-          <Image src="/images/leaves-left.webp" alt="" fill sizes="(min-width: 640px) 42vw, 80vw" className="object-contain object-left" />
+        {/* Hanging leaf, mid distance, entering from the top right */}
+        <motion.div
+          className="pointer-events-none absolute -right-[12%] -top-[6%] w-[62%] sm:-right-[4%] sm:w-[30%]"
+          style={{ y: hangingY }}
+        >
+          <Image
+            src="/images/leaves-hanging.webp"
+            alt=""
+            width={1200}
+            height={1386}
+            sizes="(min-width: 640px) 30vw, 62vw"
+            className="h-auto w-full -scale-x-100 brightness-[0.8] saturate-[0.95] [mask-image:linear-gradient(to_bottom,black_70%,transparent)]"
+          />
         </motion.div>
-        <motion.div className="pointer-events-none absolute -right-[28%] bottom-[-10%] h-[90%] w-[85%] sm:-right-[8%] sm:w-[40%]" style={{ y: leavesRightY }}>
-          <Image src="/images/leaves-right.webp" alt="" fill sizes="(min-width: 640px) 40vw, 85vw" className="object-contain object-right" />
+        {/* Monstera cluster rising from the bottom left, near */}
+        <motion.div
+          className="pointer-events-none absolute -bottom-[4%] -left-[18%] w-[92%] sm:-bottom-[8%] sm:-left-[4%] sm:w-[36%]"
+          style={{ y: monsteraY }}
+        >
+          <Image
+            src="/images/leaves-monstera.webp"
+            alt=""
+            width={1200}
+            height={1400}
+            sizes="(min-width: 640px) 36vw, 78vw"
+            className="h-auto w-full brightness-[0.75] blur-[1px] [mask-image:linear-gradient(to_top,black_75%,transparent)]"
+          />
+        </motion.div>
+        {/* Banana leaves from the bottom right, nearest */}
+        <motion.div
+          className="pointer-events-none absolute -bottom-[3%] -right-[40%] w-[130%] sm:-bottom-[10%] sm:-right-[6%] sm:w-[52%]"
+          style={{ y: bananaY }}
+        >
+          <Image
+            src="/images/leaves-banana.webp"
+            alt=""
+            width={1800}
+            height={1075}
+            sizes="(min-width: 640px) 52vw, 115vw"
+            className="h-auto w-full brightness-[0.68] blur-[2.5px] [mask-image:linear-gradient(to_right,transparent,black_25%)]"
+          />
         </motion.div>
         <div className="relative z-10 flex h-full items-center justify-center px-6">
           <Reveal className="max-w-2xl text-center">
