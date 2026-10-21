@@ -14,7 +14,7 @@ export default function Closing() {
 
   return (
     <section data-chapter="The Lift" className="relative">
-      <div className="flex min-h-svh items-center justify-center bg-cream px-6 py-24">
+      <div className="flex min-h-[75svh] items-start justify-center bg-cream px-6 pb-24 pt-10">
         <Reveal y={40}>
           <p
             className="mx-auto max-w-[22ch] text-balance text-center font-serif text-[2rem] font-light italic leading-[1.2] text-ink sm:text-5xl lg:text-6xl"

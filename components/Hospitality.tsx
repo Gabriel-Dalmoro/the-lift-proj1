@@ -1,3 +1,4 @@
+import Descent from "./Descent";
 import EtSi from "./EtSi";
 import Photo from "./Photo";
 import Reveal from "./Reveal";
@@ -67,7 +68,7 @@ export default function Hospitality() {
           </ol>
         </div>
 
-        <div className="mx-auto max-w-3xl px-6 pb-32 text-center sm:pb-40">
+        <div className="mx-auto max-w-3xl px-6 pb-16 text-center">
           <Reveal>
             <p className="text-balance font-serif text-2xl font-light leading-snug text-ink sm:text-4xl">
               Notre ambition n'est pas d'offrir le service le plus parfait de Lyon, mais celui qui procure le plus
@@ -75,6 +76,7 @@ export default function Hospitality() {
             </p>
           </Reveal>
         </div>
+        <Descent />
       </div>
     </section>
   );

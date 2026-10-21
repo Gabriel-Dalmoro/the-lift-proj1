@@ -11,10 +11,10 @@
 | drinks-cocktail.webp | [6469416](https://www.pexels.com/photo/6469416/) |
 | drinks-garnish.webp | [34167448](https://www.pexels.com/photo/34167448/) |
 | drinks-wine.webp | [3756623](https://www.pexels.com/photo/3756623/) |
-| foliage.webp | [4894418](https://www.pexels.com/photo/4894418/) |
 | food-cheers.webp | [6954047](https://www.pexels.com/photo/6954047/) |
 | food-hands.webp | [4262012](https://www.pexels.com/photo/4262012/) |
 | food-hero.webp | [5638816](https://www.pexels.com/photo/5638816/) |
 | food-table.webp | [3184180](https://www.pexels.com/photo/3184180/) |
 | hosp-madeleines.webp | [5194493](https://www.pexels.com/photo/5194493/) |
 | hosp-welcome.webp | [4350094](https://www.pexels.com/photo/4350094/) |
+| leaves-left.webp, leaves-right.webp | Drawn for this site (no photo) |

@@ -45,11 +45,12 @@ export default function Ambiance() {
           parallax={6}
           overlay="bg-gradient-to-b from-jungle-deep via-jungle-deep/30 to-jungle-deep"
         />
-        <motion.div className="pointer-events-none absolute -left-[18%] top-0 h-[85%] w-[70%] opacity-90 sm:-left-[8%] sm:w-[40%]" style={{ y: leavesY }}>
-          <Image src="/images/foliage.webp" alt="" fill sizes="50vw" className="object-cover [mask-image:linear-gradient(to_right,black_55%,transparent)]" />
+        {/* Drawn palm fronds: the far layer is sharp, the near one soft and faster */}
+        <motion.div className="pointer-events-none absolute -left-[22%] top-[-5%] h-[95%] w-[80%] sm:-left-[6%] sm:w-[42%]" style={{ y: leavesY }}>
+          <Image src="/images/leaves-left.webp" alt="" fill sizes="(min-width: 640px) 42vw, 80vw" className="object-contain object-left" />
         </motion.div>
-        <motion.div className="pointer-events-none absolute -right-[22%] bottom-0 h-[70%] w-[70%] scale-x-[-1] opacity-80 sm:-right-[10%] sm:w-[38%]" style={{ y: leavesRightY }}>
-          <Image src="/images/foliage.webp" alt="" fill sizes="50vw" className="object-cover [mask-image:linear-gradient(to_right,black_55%,transparent)]" />
+        <motion.div className="pointer-events-none absolute -right-[28%] bottom-[-10%] h-[90%] w-[85%] sm:-right-[8%] sm:w-[40%]" style={{ y: leavesRightY }}>
+          <Image src="/images/leaves-right.webp" alt="" fill sizes="(min-width: 640px) 40vw, 85vw" className="object-contain object-right" />
         </motion.div>
         <div className="relative z-10 flex h-full items-center justify-center px-6">
           <Reveal className="max-w-2xl text-center">
