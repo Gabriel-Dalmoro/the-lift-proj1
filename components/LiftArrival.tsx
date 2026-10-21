@@ -2,10 +2,11 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import CallPanel from "./CallPanel";
 import LiftDoors from "./LiftDoors";
 import Logo from "./Logo";
+import { Heavy, Serif } from "./LogoType";
 
 export interface LiftArrivalProps {
   /** If controlled by CallPanel / parent state. Leave undefined to let the
@@ -16,6 +17,8 @@ export interface LiftArrivalProps {
   /** Optional children to render inside the revealed room */
   children?: React.ReactNode;
 }
+
+const HERO_FIT = "object-cover object-[center_55%]";
 
 // Ride from the ground floor to the 8th: slow start, cruise, slow into the floor.
 const SCHEDULE = [
@@ -94,81 +97,89 @@ export default function LiftArrival({ isUnlocked, onOpened, children }: LiftArri
 
   const isDoorsOpening = phase === "opening" || phase === "open";
 
+  // Hero scroll: her question rises from behind the counter, the room drifts closer.
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end end"] });
+  const heroTextY = useTransform(heroProgress, [0.02, 0.6], ["46svh", "0svh"]);
+  const heroZoom = useTransform(heroProgress, [0, 1], [1, 1.06]);
+  const hintOpacity = useTransform(heroProgress, [0, 0.12], [0.85, 0]);
+  const [heroFgReady, setHeroFgReady] = useState(false);
+
   return (
-    <section aria-label="Arrivée au 8e étage" className="relative w-full min-h-svh overflow-hidden bg-[#0D1410] select-none">
+    <section ref={heroRef} aria-label="Arrivée au 8e étage" className="relative h-[240svh] w-full bg-[#0D1410] select-none">
       {/* ===================================================================
-          1. THE REVEALED WORLD INSIDE (8th Floor Urban Jungle Oasis)
+          1. THE ROOM: stepping out of the lift into The Lift, then her question
+             rises from behind the counter and the back row of tables as you scroll
          =================================================================== */}
-      <div
-        className="relative z-0 flex min-h-svh w-full flex-col justify-between overflow-hidden transition-[transform,filter] duration-[2600ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-        style={{
-          transform: isDoorsOpening ? "scale(1)" : "scale(1.12)",
-          filter: isDoorsOpening ? "brightness(1)" : "brightness(0.45)",
-        }}
-      >
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="/images/ambiance-hero.webp"
-            alt="Jungle urbaine au 8e étage — The Lift"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-            style={{ filter: "sepia(10%) saturate(112%) contrast(103%)" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(12,22,16,0.55) 0%, rgba(16,30,22,0.38) 45%, rgba(15,26,19,0.88) 100%)",
-            }}
-          />
-          <div
-            className="pointer-events-none absolute inset-0 mix-blend-screen transition-opacity duration-[2400ms]"
-            style={{
-              opacity: isDoorsOpening ? 0.55 : 0,
-              background: "radial-gradient(ellipse 70% 55% at 50% 30%, rgba(235, 192, 120, 0.32), transparent 70%)",
-            }}
-          />
+      <div className="sticky top-0 h-svh overflow-hidden">
+        {/* Stepping out: the camera pushes in as the doors open */}
+        <div
+          className="absolute inset-0 transition-[transform,filter] duration-[3200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+          style={{
+            transform: isDoorsOpening ? "scale(1.14)" : "scale(1)",
+            filter: isDoorsOpening ? "brightness(1)" : "brightness(0.45)",
+          }}
+        >
+          <motion.div className="absolute inset-0" style={{ scale: heroZoom }}>
+            <Image
+              src="/images/hero.webp"
+              alt="La salle du Lift transformée en jungle urbaine : plantes suspendues, bougies, lumière dorée"
+              fill
+              priority
+              sizes="100vw"
+              className={HERO_FIT}
+            />
+
+            {children ? (
+              <div className="absolute inset-x-0 top-[20svh]">{children}</div>
+            ) : (
+              <motion.div
+                className={`absolute inset-x-0 top-[17svh] px-6 text-center transition-opacity duration-700 sm:top-[19svh] ${
+                  heroFgReady && isDoorsOpening ? "opacity-100" : "opacity-0"
+                }`}
+                style={{ y: heroTextY }}
+              >
+                <div className="mb-5 inline-flex items-center gap-3">
+                  <span className="h-px w-8 bg-[#C8A464]/70" />
+                  <span className="font-sans text-[10px] tracking-[0.35em] uppercase text-[#E5C992]">8ᵉ étage · L’ambiance</span>
+                  <span className="h-px w-8 bg-[#C8A464]/70" />
+                </div>
+                <h1 className="mx-auto max-w-[13ch] text-balance text-[2.15rem] text-[#F7F3EB] drop-shadow-[0_2px_22px_rgba(0,0,0,0.7)] sm:max-w-[15ch] sm:text-5xl lg:text-[3.3rem]">
+                  <Serif>Et si, au cœur de la ville, nous pouvions nous offrir le luxe de</Serif>
+                  <Heavy>nous évader sans partir&nbsp;?</Heavy>
+                </h1>
+              </motion.div>
+            )}
+
+            {/* Counter, back tables and the plants in front: drawn over the text */}
+            <div className="pointer-events-none absolute inset-0">
+              <Image
+                src="/images/hero-fg.webp"
+                alt=""
+                fill
+                sizes="100vw"
+                loading="eager"
+                className={HERO_FIT}
+                onLoad={() => setHeroFgReady(true)}
+              />
+            </div>
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_35%,rgba(10,16,12,0.45),transparent_75%),linear-gradient(180deg,rgba(12,22,16,0.45)_0%,transparent_30%,transparent_70%,rgba(15,26,19,0.75)_100%)]" />
+          </motion.div>
         </div>
 
-        <div className="relative z-10 flex items-center justify-between px-6 pt-7 sm:px-12 sm:pt-10">
+        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between px-6 pt-7 sm:px-12 sm:pt-10">
           <span className="font-sans text-[11px] tracking-[0.32em] uppercase text-[#E5C992]/80">The Lift · Lyon</span>
           <span className="font-sans text-[10px] tracking-[0.25em] uppercase text-[#F4EFE6]/55">Visuel d’illustration</span>
         </div>
 
-        {children ? (
-          <div className="relative z-10 my-auto">{children}</div>
-        ) : (
-          <div
-            className="relative z-10 mx-auto my-auto max-w-4xl px-6 py-16 text-center transition-all duration-[1600ms] delay-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-12"
-            style={{
-              opacity: isDoorsOpening ? 1 : 0,
-              transform: isDoorsOpening ? "translateY(0px)" : "translateY(28px)",
-            }}
-          >
-            <div className="mb-6 inline-flex items-center gap-3">
-              <span className="h-[1px] w-8 bg-[#C8A464]/60" />
-              <span className="font-sans text-xs tracking-[0.35em] uppercase text-[#D8B77A]">8ᵉ ÉTAGE · L’AMBIANCE</span>
-              <span className="h-[1px] w-8 bg-[#C8A464]/60" />
-            </div>
-            <h1 className="font-serif text-3xl leading-[1.18] font-light tracking-[-0.01em] text-[#F7F3EB] sm:text-5xl md:text-6xl">
-              Et si, au cœur de la ville, nous pouvions nous offrir le luxe de nous évader sans partir{" "}?
-            </h1>
-            <p className="mx-auto mt-8 max-w-2xl font-sans text-base leading-relaxed font-light text-[#EAE3D5]/90 sm:text-lg">
-              À huit étages de l’agitation lyonnaise, j’imagine un lieu où la nature reprend ses droits, une jungle
-              urbaine luxuriante, une oasis culinaire où le temps semble suspendu.
-            </p>
-          </div>
-        )}
-
-        <div
-          className="relative z-10 flex flex-col items-center pb-8 transition-opacity duration-1000 delay-1000"
-          style={{ opacity: phase === "open" ? 0.8 : 0 }}
+        {/* Scroll invitation */}
+        <motion.div
+          className="pointer-events-none absolute inset-x-0 bottom-8 flex flex-col items-center transition-opacity duration-1000 delay-1000"
+          style={{ opacity: phase === "open" ? hintOpacity : 0 }}
         >
           <span className="mb-3 font-sans text-[10px] tracking-[0.35em] uppercase text-[#D8B77A]">Découvrir la vision</span>
           <div className="h-10 w-[1px] bg-gradient-to-b from-[#D8B77A] to-transparent" />
-        </div>
+        </motion.div>
       </div>
 
       {/* ===================================================================

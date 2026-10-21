@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
+import { Heavy, Serif } from "./LogoType";
 
 const FIT = "object-cover object-[55%_center]";
 
@@ -43,11 +44,9 @@ export default function TerraceDusk() {
             className={`absolute inset-x-0 top-[17svh] px-6 text-center lg:top-[8svh] ${fgReady ? "" : "invisible"}`}
             style={{ y: lineY, opacity: fgOpacity }}
           >
-            <p
-              className="mx-auto max-w-[16ch] text-balance font-serif text-4xl font-light italic leading-tight text-cream drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)] sm:text-6xl"
-              style={{ fontVariationSettings: '"opsz" 144, "SOFT" 80' }}
-            >
-              Un ailleurs inattendu, sans jamais quitter Lyon.
+            <p className="mx-auto max-w-[14ch] text-balance text-[2.9rem] text-cream drop-shadow-[0_2px_22px_rgba(0,0,0,0.65)] sm:text-7xl lg:text-[5.2rem]">
+              <Serif>Un ailleurs inattendu,</Serif>
+              <Heavy>sans jamais quitter Lyon.</Heavy>
             </p>
           </motion.div>
 

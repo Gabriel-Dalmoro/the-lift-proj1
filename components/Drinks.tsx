@@ -10,24 +10,43 @@ function Statement({
   children,
   title,
   body,
+  photo,
 }: {
   children: React.ReactNode;
   /** Her section title, e.g. "Une cave sans frontières" */
   title: string;
   /** Her short presentation text */
   body: React.ReactNode;
+  photo?: { src: string; alt: string };
 }) {
+  const text = (
+    <div>
+      <Reveal delay={0.1}>
+        <h3 className="font-serif text-2xl font-light italic text-cream sm:text-3xl">{title}</h3>
+      </Reveal>
+      <Reveal delay={0.2} className="mt-5 space-y-4 text-base leading-relaxed text-cream/75 sm:text-lg">
+        {body}
+      </Reveal>
+    </div>
+  );
   return (
     <div className="mx-auto grid max-w-6xl items-center gap-10 border-t border-brass/15 px-5 py-20 sm:py-28 md:grid-cols-2 md:gap-16">
-      <Reveal>{children}</Reveal>
-      <div>
-        <Reveal delay={0.1}>
-          <h3 className="font-serif text-2xl font-light italic text-cream sm:text-3xl">{title}</h3>
-        </Reveal>
-        <Reveal delay={0.2} className="mt-5 space-y-4 text-base leading-relaxed text-cream/75 sm:text-lg">
-          {body}
-        </Reveal>
-      </div>
+      {photo ? (
+        <>
+          <div className="space-y-10">
+            <Reveal>{children}</Reveal>
+            {text}
+          </div>
+          <Reveal delay={0.15}>
+            <Photo src={photo.src} alt={photo.alt} className="aspect-[4/5] w-full rounded-sm" sizes="(min-width: 768px) 50vw, 100vw" />
+          </Reveal>
+        </>
+      ) : (
+        <>
+          <Reveal>{children}</Reveal>
+          {text}
+        </>
+      )}
     </div>
   );
 }
@@ -63,6 +82,7 @@ export default function Drinks() {
         />
 
         <Statement
+          photo={{ src: "/images/drinks-wine.webp", alt: "Un vin rouge servi dans un verre, lumière chaude" }}
           title="Une cave sans frontières"
           body={
             <>

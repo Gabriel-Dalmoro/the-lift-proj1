@@ -29,6 +29,16 @@ export default function Ambiance() {
 
   return (
     <section data-chapter="L’ambiance" className="relative bg-jungle-deep text-cream">
+      {/* Her first paragraph, right after the question in the hero */}
+      <div className="mx-auto max-w-3xl px-6 pt-28 text-center sm:pt-36">
+        <Reveal>
+          <p className="text-balance font-display text-[1.9rem] italic leading-[1.2] text-cream/95 sm:text-5xl">
+            À huit étages de l’agitation lyonnaise, j’imagine un lieu où la nature reprend ses droits, une jungle urbaine
+            luxuriante, une oasis culinaire où le temps semble suspendu.
+          </p>
+        </Reveal>
+      </div>
+
       {/* Beat 1 */}
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-24 sm:py-36 md:grid-cols-2 md:gap-16">
         <Reveal>

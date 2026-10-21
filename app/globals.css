@@ -16,6 +16,8 @@
   --font-serif: var(--font-fraunces), "Times New Roman", serif;
   --animate-shake: shake 0.4s ease-in-out;
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-display: var(--font-instrument), "Times New Roman", serif;
+  --font-heavy: var(--font-boldonse), "Arial Black", sans-serif;
 }
 
 :root {
