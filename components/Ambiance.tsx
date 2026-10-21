@@ -12,7 +12,7 @@ const KEYWORDS = ["Jungle urbaine", "Oasis culinaire", "Évasion", "Immersion", 
 const SENSES = [
   { title: "Le visuel", text: "Une végétation spectaculaire dès l’entrée." },
   { title: "Le sonore", text: "Une ambiance musicale et des sons évoquant subtilement la nature." },
-  { title: "L’olfactif", text: "Une signature parfumée végétale, discrète et reconnaissable, diffusée dans le sas." },
+  { title: "L’olfactif", text: "Une signature parfumée végétale, discrète et reconnaissable, diffusée dans le lobby." },
 ];
 
 export default function Ambiance() {
