@@ -2,15 +2,13 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { BrassDoor, BrassJamb, BrassSill, BrassTransom } from "./BrassDoor";
+import LiftDoors from "./LiftDoors";
 import Logo from "./Logo";
 
 export interface ClosingProps {
   /** Flip to true if Sabrina approves adding "une vision de Sabrina" */
   showSabrinaCredit?: boolean;
 }
-
-const CLOSE_TRANSITION = "transform 2400ms cubic-bezier(0.65, 0, 0.35, 1)";
 
 export default function Closing({ showSabrinaCredit = false }: ClosingProps) {
   const doorSectionRef = useRef<HTMLDivElement | null>(null);
@@ -33,7 +31,7 @@ export default function Closing({ showSabrinaCredit = false }: ClosingProps) {
     return () => obs.disconnect();
   }, []);
 
-  // Observer 2: Softly close the brass lift doors when scrolling into the end card
+  // Observer 2: Softly close the lift doors when scrolling into the end card
   useEffect(() => {
     const el = doorSectionRef.current;
     if (!el) return;
@@ -43,7 +41,7 @@ export default function Closing({ showSabrinaCredit = false }: ClosingProps) {
         clearTimeout(plaqueTimer);
         if (entry.isIntersecting) {
           setDoorsClosed(true);
-          plaqueTimer = setTimeout(() => setPlaqueVisible(true), 2100);
+          plaqueTimer = setTimeout(() => setPlaqueVisible(true), 2500);
         } else {
           setDoorsClosed(false);
           setPlaqueVisible(false);
@@ -113,85 +111,34 @@ export default function Closing({ showSabrinaCredit = false }: ClosingProps) {
           />
         </div>
 
-        {/* TOP BRONZE ARCHITECTURAL TRANSOM HEADER */}
-        <BrassTransom className="h-20 sm:h-24">
+        {/* THE REAL LIFT DOORS, CLOSING SOFTLY (they slide back from left to right) */}
+        <LiftDoors
+          className="absolute inset-0 z-10"
+          open={!doorsClosed}
+          floor="8"
+          arrow={doorsClosed ? "down" : null}
+          glow
+          duration={2600}
+        >
+          {/* The logo appears on the closed steel, like an engraving */}
           <div
-            className="flex items-center gap-3 rounded-sm border border-[#7A5E32]/65 px-5 py-1.5"
+            className="flex h-full items-center justify-center px-4 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{
-              background: "linear-gradient(180deg, #090807 0%, #120F0B 100%)",
-              boxShadow: "inset 0 2px 8px rgba(0,0,0,0.95)",
+              opacity: plaqueVisible ? 1 : 0,
+              transform: plaqueVisible ? "scale(1)" : "scale(0.97)",
             }}
           >
-            <span
-              className="font-serif text-lg tracking-widest text-[#F4D493]"
-              style={{ textShadow: "0 0 14px rgba(247, 219, 154, 0.75)" }}
-            >
-              8
-            </span>
-            <span className="h-3 w-[1px] bg-[#5C4B32]/50" />
-            <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-[#C9A66B]/80">Lyon · 8ᵉ étage</span>
-          </div>
-        </BrassTransom>
-
-        {/* ELEVATOR SHAFT & TWIN CLOSING BRASS DOORS */}
-        <div className="relative flex flex-1 w-full overflow-hidden">
-          <BrassJamb side="left" />
-
-          {/* DOORS STAGE */}
-          <div className="relative flex flex-1 h-full overflow-hidden">
-            <BrassDoor
-              side="left"
-              transform={doorsClosed ? "translate3d(0%, 0, 0)" : "translate3d(-92%, 0, 0)"}
-              transition={CLOSE_TRANSITION}
-            />
-            <BrassDoor
-              side="right"
-              transform={doorsClosed ? "translate3d(0%, 0, 0)" : "translate3d(92%, 0, 0)"}
-              transition={CLOSE_TRANSITION}
-            />
-
-            {/* CENTER ENGRAVED BRASS PLAQUE — Fades in once doors kiss */}
-            <div
-              className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-6 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
-              style={{
-                opacity: plaqueVisible ? 1 : 0,
-                transform: plaqueVisible ? "scale(1)" : "scale(0.96)",
-              }}
-            >
-              <div
-                className="relative flex flex-col items-center border border-[#E8C98E]/60 px-10 py-8 text-center sm:px-16 sm:py-11"
-                style={{
-                  background: "linear-gradient(145deg, #16110B 0%, #0E0B07 55%, #1A140C 100%)",
-                  boxShadow:
-                    "0 25px 60px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,232,185,0.35), 0 0 0 1px rgba(0,0,0,0.8)",
-                }}
-              >
-                {/* Corner Brass Rivet Accents */}
-                <span className="absolute top-2.5 left-2.5 h-1 w-1 rounded-full bg-[#D8B77A]/70" />
-                <span className="absolute top-2.5 right-2.5 h-1 w-1 rounded-full bg-[#D8B77A]/70" />
-                <span className="absolute bottom-2.5 left-2.5 h-1 w-1 rounded-full bg-[#D8B77A]/70" />
-                <span className="absolute bottom-2.5 right-2.5 h-1 w-1 rounded-full bg-[#D8B77A]/70" />
-
-                <span className="mb-4 font-sans text-[10px] tracking-[0.38em] uppercase text-[#C8A464]/80">
-                  8ᵉ ÉTAGE · LYON
-                </span>
-
-                <Logo
-                  className="w-40 text-[#F5DEB0] drop-shadow-[0_2px_18px_rgba(216,183,122,0.35)] sm:w-56"
-                  cable={40}
-                />
-
-                {showSabrinaCredit && (
-                  <p className="mt-3 font-serif text-sm italic tracking-[0.08em] text-[#D8B77A]/85">une vision de Sabrina</p>
-                )}
-              </div>
+            <div className="flex flex-col items-center gap-4">
+              <Logo
+                className="w-44 text-[#2b2017]/75 drop-shadow-[0_1px_0_rgba(255,240,220,0.35)] sm:w-64"
+                cable={60}
+              />
+              {showSabrinaCredit && (
+                <p className="font-serif text-sm italic tracking-[0.08em] text-[#2b2017]/70">une vision de Sabrina</p>
+              )}
             </div>
           </div>
-
-          <BrassJamb side="right" />
-        </div>
-
-        <BrassSill />
+        </LiftDoors>
       </div>
     </footer>
   );

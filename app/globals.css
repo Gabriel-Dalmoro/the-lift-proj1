@@ -48,18 +48,36 @@ body {
   80% { transform: translateX(3px); }
 }
 
-/* Brushed brass for the lift doors and panel */
-.brass {
-  background-color: #b08a3e;
-  background-image:
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px),
-    linear-gradient(100deg, #7d5f28 0%, #c9a253 22%, #f0d898 38%, #b88f42 55%, #8a6a2d 78%, #c7a05a 100%);
+/* Satin stainless steel, sampled from the real lift at The Lift: warm light, vertical brushing */
+:root {
+  --brush: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.006' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E");
 }
 
-.brass-edge {
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 236, 190, 0.35),
-    inset 0 0 40px rgba(60, 40, 10, 0.45);
+.steel-door {
+  background-color: #8a6e55;
+  background-image:
+    var(--brush),
+    radial-gradient(ellipse 38% 22% at 42% 48%, rgba(52, 34, 24, 0.28), transparent 70%),
+    radial-gradient(ellipse 45% 30% at 60% 20%, rgba(255, 228, 196, 0.22), transparent 70%),
+    linear-gradient(90deg, rgba(255, 240, 220, 0.1), transparent 25%, rgba(0, 0, 0, 0.06) 75%, rgba(255, 240, 220, 0.06)),
+    linear-gradient(180deg, #a3896d 0%, #8b6f56 42%, #6a4e3d 100%);
+  background-blend-mode: soft-light, normal, normal, normal, normal;
+}
+
+.steel-cabin {
+  background-color: #7f7268;
+  background-image:
+    var(--brush),
+    linear-gradient(180deg, #968a7e 0%, #7c6f64 50%, #5e5248 100%);
+  background-blend-mode: soft-light, normal;
+}
+
+.steel-dark {
+  background-color: #4d443d;
+  background-image:
+    var(--brush),
+    linear-gradient(180deg, #5d534b 0%, #463d36 100%);
+  background-blend-mode: soft-light, normal;
 }
 
 .grain::after {
