@@ -118,3 +118,12 @@ body {
     --z: 1.44;
   }
 }
+
+/* The call panel grows on big screens but always fits the window's height
+   (a zoomed Windows screen with tabs, bookmarks and taskbar leaves little room). */
+.call-panel { scale: 1; }
+@media (min-width: 1024px) { .call-panel { scale: 1.25; } }
+@media (max-height: 700px) { .call-panel { scale: 1; } }
+@media (max-height: 590px) { .call-panel { scale: 0.88; } }
+@media (max-height: 530px) { .call-panel { scale: 0.78; } }
+@media (max-height: 470px) { .call-panel { scale: 0.68; } }

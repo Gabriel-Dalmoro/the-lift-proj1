@@ -41,7 +41,7 @@ export default function PatioScene() {
 
           {/* Her line, in the glass above the tables */}
           <div className="absolute inset-x-0 top-[6svh] px-5 text-center sm:px-8" style={{ color: GOLD }}>
-            <p className="mx-auto max-w-[34em] text-balance lg:max-w-none text-[0.95rem] sm:text-[1.15rem] lg:text-[1.4vw]">
+            <p className="mx-auto max-w-[34em] text-balance lg:max-w-none text-[0.95rem] sm:text-[1.15rem] lg:text-[min(1.4vw,2.49svh)]">
               <motion.span
                 className={`block font-display italic leading-[1.15] ${SHADOW}`}
                 style={{ opacity: serifOpacity, filter: serifBlur, y: serifY }}

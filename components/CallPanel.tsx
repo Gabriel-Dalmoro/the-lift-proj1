@@ -93,7 +93,7 @@ export default function CallPanel({ onUnlock }: CallPanelProps) {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="steel-door relative flex w-[min(78vw,250px)] lg:scale-125 flex-col items-center gap-6 rounded-2xl px-7 pb-8 pt-7 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,240,220,0.3)]"
+        className="steel-door relative flex w-[min(78vw,250px)] call-panel flex-col items-center gap-6 rounded-2xl px-7 pb-8 pt-7 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,240,220,0.3)]"
       >
         <Logo className="w-28 text-[#2b2017]/80" cable={0} />
         <LedDisplay value="0" arrow={called ? "up" : null} glow={called} />
